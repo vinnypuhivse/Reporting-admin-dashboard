@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/newsela-angelou-design-system-52cccfae-6a38-4cc9-bded-c8c31ee42137/colors_and_type.css">
+  <script src="_ds/newsela-angelou-design-system-52cccfae-6a38-4cc9-bded-c8c31ee42137/_ds_bundle.js"></script>
+</helmet>
+
+<div style="position:relative;display:flex;flex-direction:column;gap:6px;width:100%;min-width:0">
+  <sc-if value="{{ hasLabel }}" hint-placeholder-val="{{ false }}">
+    <span style="font-size:14px;line-height:20px;color:#545454">{{ label }}</span>
+  </sc-if>
+  <button type="button" ref="{{ triggerRef }}" onClick="{{ onToggle }}" onKeyDown="{{ onKey }}" role="combobox" aria-haspopup="listbox" aria-expanded="{{ expanded }}" aria-controls="{{ listId }}" aria-activedescendant="{{ activeId }}" style="display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;box-sizing:border-box;height:{{ fieldHeight }};border:1px solid #77767A;border-radius:8px;background:#FFFFFF;padding:0 16px;font-family:inherit;font-size:{{ fieldFont }};line-height:24px;color:#1D1D1D;cursor:pointer;text-align:left" style-hover="border-color:#0A6EFA" style-focus="outline:2px solid #0A6EFA;outline-offset:2px">
+    <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ displayLabel }}</span>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;transition:transform 120ms cubic-bezier(0.2,0,0,1);transform:{{ chevron }}"><path d="M6 9l6 6 6-6"></path></svg>
+  </button>
+  <sc-if value="{{ open }}" hint-placeholder-val="{{ false }}">
+    <div role="listbox" id="{{ listId }}" ref="{{ listRef }}" onClick="{{ stopClick }}" onKeyDown="{{ onKey }}" style="position:fixed;left:{{ popLeft }};top:{{ popTop }};width:{{ popWidth }};max-height:{{ popMaxH }};overflow-y:auto;box-sizing:border-box;background:#FFFFFF;border-radius:8px;box-shadow:0 4px 12px rgba(29,29,29,0.16),0 0 2px rgba(29,29,29,0.08);padding:8px 0;display:flex;flex-direction:column;z-index:600">
+      <sc-for list="{{ items }}" as="it" hint-placeholder-count="4">
+        <div role="option" id="{{ it.id }}" aria-selected="{{ it.selected }}" onClick="{{ it.onSelect }}" onMouseEnter="{{ it.onEnter }}" onMouseLeave="{{ it.onLeave }}" style="display:flex;align-items:center;gap:8px;flex-shrink:0;min-height:40px;box-sizing:border-box;padding:4px 8px 4px 4px;cursor:pointer;background:{{ it.bg }}">
+          <span style="display:block;width:4px;border-radius:2px;align-self:stretch;flex-shrink:0;background:{{ it.bar }}"></span>
+          <span style="flex:1;min-width:0;font-size:16px;line-height:24px;color:{{ it.color }}">{{ it.label }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:360,&quot;height&quot;:420},&quot;label&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Select school&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;value&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Lincoln High School&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;options&quot;:{&quot;editor&quot;:null,&quot;default&quot;:[&quot;Lincoln High School&quot;,&quot;Roosevelt Middle School&quot;,&quot;Jefferson Elementary&quot;],&quot;tsType&quot;:&quot;(string | { value: string; label?: string })[]&quot;},&quot;onChange&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(e: { target: { value: string } }) =&gt; void&quot;},&quot;height&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:56,&quot;min&quot;:32,&quot;max&quot;:72,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;fontSize&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:16,&quot;min&quot;:12,&quot;max&quot;:20,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;placeholder&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { open: false, hover: -1, rect: null };
+  _uid = 'ps-' + Math.random().toString(36).slice(2);
+
+  // Geometry follows the design system's Popout card: 8px radius, 8px block padding,
+  // no row gap, 336px max height, 4px offset from the tap target, and the two-layer
+  // shadow. Rows are 40px with a 4px Blue 700 marker on the selected row; the marker
+  // is transparent otherwise, so every label keeps the same 16px text inset.
+  ROW_SELECTED_BG = '#F7F8F8';
+  ROW_MARKER = '#082C88';
+  ROW_TEXT = '#5B5A61';
+  ROW_TEXT_ON = '#1D1D1D';
+
+  normalize() {
+    const raw = this.props.options || [];
+    return raw.map((o) => (o && typeof o === 'object')
+      ? { value: o.value, label: o.label == null ? o.value : o.label }
+      : { value: o, label: o });
+  }
+
+  measure() {
+    const el = this._trigger;
+    if (!el || typeof el.getBoundingClientRect !== 'function') return null;
+    const r = el.getBoundingClientRect();
+    return { left: r.left, bottom: r.bottom, top: r.top, width: r.width };
+  }
+
+  place = () => {
+    if (this.state.open) this.setState({ rect: this.measure() });
+  };
+
+  close(focusTrigger) {
+    this.setState({ open: false, hover: -1 });
+    if (focusTrigger && this._trigger) this._trigger.focus();
+  }
+
+  // Each dropdown is its own DC instance, so "only one open at a time" can't rely on
+  // the document click (the trigger stops propagation). Opening announces itself and
+  // every other instance closes.
+  openList() {
+    this.setState({ open: true, hover: -1, rect: this.measure() }, () => {
+      // Like a native select, a long list opens showing the current selection.
+      const i = this.normalize().findIndex((o) => o.value === this.props.value);
+      if (i > 0 && this._list) {
+        const row = this._list.children[i];
+        if (row && row.offsetTop + row.offsetHeight > this._list.clientHeight) {
+          this._list.scrollTop = row.offsetTop + row.offsetHeight - this._list.clientHeight;
+        }
+      }
+    });
+    if (typeof document !== 'undefined') {
+      document.dispatchEvent(new CustomEvent('popoutselect:open', { detail: { id: this._uid } }));
+    }
+  }
+
+  componentDidMount() {
+    if (typeof document === 'undefined') return;
+    this._away = () => { if (this.state.open) this.close(false); };
+    this._peer = (e) => { if (e.detail && e.detail.id !== this._uid && this.state.open) this.close(false); };
+    document.addEventListener('click', this._away);
+    document.addEventListener('popoutselect:open', this._peer);
+    window.addEventListener('resize', this.place);
+    window.addEventListener('scroll', this.place, true);
+  }
+
+  componentWillUnmount() {
+    if (typeof document === 'undefined') return;
+    document.removeEventListener('click', this._away);
+    document.removeEventListener('popoutselect:open', this._peer);
+    window.removeEventListener('resize', this.place);
+    window.removeEventListener('scroll', this.place, true);
+  }
+
+  // Native select keyboard behaviour: arrows move the active row, Enter/Space commit,
+  // Home/End jump, Escape closes and returns focus to the trigger.
+  onKey = (e) => {
+    const opts = this.normalize();
+    if (!opts.length) return;
+    const k = e.key;
+    const curIdx = opts.findIndex((o) => o.value === this.props.value);
+    if (!this.state.open) {
+      if (k === 'ArrowDown' || k === 'ArrowUp' || k === 'Enter' || k === ' ' || k === 'Spacebar') {
+        e.preventDefault();
+        this.openList();
+        this.setHover(curIdx >= 0 ? curIdx : 0);
+      }
+      return;
+    }
+    const at = this.state.hover >= 0 ? this.state.hover : (curIdx >= 0 ? curIdx : -1);
+    if (k === 'Escape') { e.preventDefault(); this.close(true); return; }
+    if (k === 'Tab') { this.close(false); return; }
+    if (k === 'ArrowDown') { e.preventDefault(); this.setHover(Math.min(opts.length - 1, at + 1)); return; }
+    if (k === 'ArrowUp') { e.preventDefault(); this.setHover(Math.max(0, at <= 0 ? 0 : at - 1)); return; }
+    if (k === 'Home') { e.preventDefault(); this.setHover(0); return; }
+    if (k === 'End') { e.preventDefault(); this.setHover(opts.length - 1); return; }
+    if (k === 'Enter' || k === ' ' || k === 'Spacebar') {
+      e.preventDefault();
+      const pick = opts[at >= 0 ? at : 0];
+      this.close(true);
+      if (pick && this.props.onChange) this.props.onChange({ target: { value: pick.value } });
+    }
+  };
+
+  // Keep the keyboard-active row inside the visible part of a long list. Driven from
+  // the setState callback rather than componentDidUpdate, which the runtime does not
+  // hand to the logic class.
+  scrollActive() {
+    const list = this._list;
+    const i = this.state.hover;
+    if (!list || i < 0) return;
+    const row = list.children[i];
+    if (!row) return;
+    const lt = list.scrollTop, lh = list.clientHeight;
+    const rt = row.offsetTop, rh = row.offsetHeight;
+    if (rt < lt) list.scrollTop = i === 0 ? 0 : rt;
+    else if (rt + rh > lt + lh) list.scrollTop = rt + rh - lh + (i === list.children.length - 1 ? 8 : 0);
+  }
+
+  setHover(i) {
+    this.setState({ hover: i }, () => this.scrollActive());
+  }
+
+  renderVals() {
+    const opts = this.normalize();
+    const value = this.props.value;
+    const match = opts.filter((o) => o.value === value)[0];
+    const rect = this.state.rect;
+    // Flip above the trigger when the list would run off the bottom of the viewport.
+    let top = 0, left = 0, width = 320, maxH = 336;
+    if (rect) {
+      const vh = typeof window === 'undefined' ? 900 : window.innerHeight;
+      const wanted = Math.min(336, opts.length * 40 + 16);
+      const below = vh - rect.bottom - 12;
+      const above = rect.top - 12;
+      left = rect.left;
+      width = this.props.matchWidth ? rect.width : Math.max(rect.width, 240);
+      // Prefer below; flip up only when above has more room, and clamp the list to
+      // whatever the chosen side actually offers so it never covers its own trigger.
+      const flip = below < wanted && above > below;
+      maxH = Math.max(120, Math.min(wanted, flip ? above : below));
+      top = flip ? rect.top - maxH - 4 : rect.bottom + 4;
+    }
+    return {
+      label: this.props.label || '',
+      hasLabel: !!this.props.label,
+      fieldHeight: (this.props.height || 56) + 'px',
+      fieldFont: (this.props.fontSize || 16) + 'px',
+      displayLabel: match ? match.label : (value || this.props.placeholder || ''),
+      open: this.state.open,
+      chevron: this.state.open ? 'rotate(180deg)' : 'rotate(0deg)',
+      popLeft: Math.round(left) + 'px',
+      popTop: Math.round(top) + 'px',
+      popWidth: Math.round(width) + 'px',
+      popMaxH: Math.round(maxH) + 'px',
+      expanded: this.state.open ? 'true' : 'false',
+      activeId: this.state.open && this.state.hover >= 0 ? this._uid + '-' + this.state.hover : undefined,
+      listId: (this._uid || 'ps') + '-list',
+      triggerRef: (el) => { this._trigger = el; },
+      listRef: (el) => { this._list = el; },
+      onKey: this.onKey,
+      stopClick: (e) => e.stopPropagation(),
+      onToggle: (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (this.state.open) this.close(false); else this.openList();
+      },
+      items: opts.map((o, i) => {
+        const on = o.value === value;
+        return {
+          label: o.label,
+          id: (this._uid || 'ps') + '-' + i,
+          selected: on ? 'true' : 'false',
+          bg: on || this.state.hover === i ? this.ROW_SELECTED_BG : '#FFFFFF',
+          bar: on ? this.ROW_MARKER : 'transparent',
+          color: on ? this.ROW_TEXT_ON : this.ROW_TEXT,
+          onEnter: () => this.setState({ hover: i }),
+          onLeave: () => this.setState({ hover: -1 }),
+          onSelect: (e) => {
+            // preventDefault matters when the select sits inside a <label>: without it the
+            // browser forwards the click to the trigger and reopens the popout.
+            e.preventDefault();
+            e.stopPropagation();
+            this.close(true);
+            // Shimmed as an event so existing e.target.value handlers keep working.
+            if (this.props.onChange) this.props.onChange({ target: { value: o.value } });
+          },
+        };
+      }),
+    };
+  }
+}
+
+</script>
+</body>
+</html>
