@@ -5039,7 +5039,7 @@ class Component extends DCLogic {
       onAllClasses: (e) => { e.preventDefault(); this.setState({ view: 'class', classroom: 'All classes', expanded: null }); },
       allClassesStyle: this.navStyle(isClass && st.classroom === 'All classes', 14),
       allClassesBar: this.navBar(isClass && st.classroom === 'All classes', 4),
-      navClasses: ['ELA Class 8th Grade P.2', 'ELA Class 8th Grade P.3', 'ELA Class 8th Grade P.7', 'ELA Class 8th Grade P.8'].map(name => ({
+      navClasses: ['ELA Class 8th Grade P.3', 'Social Studies Class 8th Grade P.5', 'STEM Class 8th Grade P.6', 'Writing Workshop 8th Grade P.1'].map(name => ({
         name,
         expanded: st.expanded === name,
         chev: 'flex-shrink:0;transform:rotate(' + (st.expanded === name ? '0deg' : '-90deg') + ')',
@@ -5280,8 +5280,8 @@ class Component extends DCLogic {
       filterOneLabel: isClass ? 'Select classroom' : 'Filter by classroom',
       filterOneValue: st.classroom,
       filterOneOptions: isClass
-        ? ['All classes', 'ELA Class 8th Grade P.2', 'ELA Class 8th Grade P.3', 'ELA Class 8th Grade P.7', 'ELA Class 8th Grade P.8']
-        : [{ value: 'All classes', label: 'Select classroom' }, 'ELA Class 8th Grade P.2', 'ELA Class 8th Grade P.3', 'ELA Class 8th Grade P.7', 'ELA Class 8th Grade P.8'],
+        ? ['All classes', 'ELA Class 8th Grade P.3', 'Social Studies Class 8th Grade P.5', 'STEM Class 8th Grade P.6', 'Writing Workshop 8th Grade P.1']
+        : [{ value: 'All classes', label: 'Select classroom' }, 'ELA Class 8th Grade P.3', 'Social Studies Class 8th Grade P.5', 'STEM Class 8th Grade P.6', 'Writing Workshop 8th Grade P.1'],
       onFilterOne: (e) => this.setState({ classroom: e.target.value }),
       studentPickValue: st.student,
       studentPickOptions: STUDENTS.map(s => displayName(s.name)),
@@ -5401,7 +5401,7 @@ class Component extends DCLogic {
       tabStemIcon: this.tabIcon('stem', 'project/assets/stem-logo.svg', 17, 22),
 
       classroom: st.classroom, onClassroom: set('classroom'),
-      classrooms: ['All classes', 'ELA Class 8th Grade P.2', 'ELA Class 8th Grade P.3', 'ELA Class 8th Grade P.7', 'ELA Class 8th Grade P.8'],
+      classrooms: ['All classes', 'ELA Class 8th Grade P.3', 'Social Studies Class 8th Grade P.5', 'STEM Class 8th Grade P.6', 'Writing Workshop 8th Grade P.1'],
       dateRange: st.dateRange, onDateRange: set('dateRange'),
       dateRanges: ['July to date', 'Last 90 days', 'Last 45 days'],
       activityOptions,
