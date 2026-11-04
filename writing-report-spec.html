@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/newsela-angelou-design-system-52cccfae-6a38-4cc9-bded-c8c31ee42137/colors_and_type.css">
+<link rel="stylesheet" href="_ds/newsela-angelou-design-system-52cccfae-6a38-4cc9-bded-c8c31ee42137/ui_kits/newsela-web/styles.css">
+<script src="_ds/newsela-angelou-design-system-52cccfae-6a38-4cc9-bded-c8c31ee42137/_ds_bundle.js"></script>
+<style>
+  body { margin:0; background:#fff; color:#1D1D1D; font-family:'Circular','Nunito',system-ui,sans-serif; }
+  h1,h2,h3,h4 { margin:0; }
+  h2,h3,h4 { font-family:'Circular','Nunito',system-ui,sans-serif; }
+  a { color:#082C88; }
+  a:hover { color:#0A6EFA; }
+  code { font-family:'Circular','Nunito',system-ui,sans-serif; font-size:inherit; font-weight:700; background:#F7F8F8; border-radius:4px; padding:0 4px; }
+</style>
+</helmet>
+
+<div style="max-width:1180px;margin:0 auto;padding:48px 40px 96px">
+  <a href="Admin Writing Report.dc.html" style="display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;text-decoration:underline;text-underline-offset:3px;margin-bottom:24px">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M19 12H5"></path><path d="M11 6l-6 6 6 6"></path></svg>
+    Back to Admin Writing Report
+  </a>
+  <h1 style="font-family:'Noto Serif',Georgia,serif;font-weight:700;font-size:40px;line-height:48px;margin:0 0 8px">Design spec</h1>
+  <p style="font-size:18px;line-height:28px;color:#545454;margin:0 0 8px;max-width:70ch">Every component on the Admin Writing Report, shown as it renders in the page and grouped by whether it comes from the Angelou design system or was built for this report.</p>
+  <p style="font-size:16px;line-height:24px;color:#545454;margin:0 0 8px;max-width:70ch">Two components are local implementations of patterns Angelou documents but has not shipped in code: the Popout list, built to the design system's Popout card, and one shared select that mounts it. Both live in <code>PopoutSelect.dc.html</code>, so swapping in the real component later is a single change.</p>
+  <p style="font-size:14px;line-height:20px;color:#767676;margin:0 0 48px">{{ lastUpdated }}</p>
+
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+    <span style="display:inline-flex;align-items:center;height:24px;padding:0 12px;border-radius:999px;background:#0A6EFA;color:#fff;font-size:12px;line-height:16px">Angelou</span>
+    <h2 style="font-weight:700;font-size:24px;line-height:32px">Angelou design system components</h2>
+  </div>
+  <p style="font-size:16px;line-height:24px;color:#545454;margin:0 0 24px;max-width:70ch">Patterns and tokens defined in Angelou 2.0. Values below are taken from the system, not invented for this page.</p>
+
+  <div style="display:flex;flex-direction:column;gap:20px;margin-bottom:56px">
+
+    <div style="display:grid;grid-template-columns:260px minmax(0,1fr);gap:32px;border:1px solid #E1E3E5;border-radius:8px;padding:24px">
+      <div>
+        <h3 style="font-weight:700;font-size:18px;line-height:24px;margin-bottom:6px">Select — Popout list</h3>
+        <p style="font-size:14px;line-height:20px;color:#545454;margin:0">Trigger is 48–56px tall, 8px radius, 1px #77767A border, white fill, chevron rotating 180° on open. The list is the Angelou Popout: 8px radius, 8px block padding, 40px rows, <code>0 4px 12px rgba(29,29,29,0.16), 0 0 2px rgba(29,29,29,0.08)</code>, 4px below the trigger, 336px scroll cap. Selected row is #F7F8F8 with a 4px Blue 700 marker; text inset stays 16px either way. Every dropdown on the page is one shared <code>PopoutSelect</code> component — native selects can't be styled, so the list is rebuilt with full keyboard support (arrows, Home/End, Enter, Escape) and only one open at a time. Picking an option commits the value and closes the list; the select cancels the option click's default so it can't be forwarded back to the trigger and reopen.</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start">
+        <div style="display:flex;flex-direction:column;gap:6px;width:300px">
+          <span style="font-size:14px;line-height:20px;color:#545454">Select school — closed</span>
+          <span style="display:flex;align-items:center;justify-content:space-between;gap:12px;height:56px;box-sizing:border-box;border:1px solid #77767A;border-radius:8px;background:#fff;padding:0 16px;font-size:18px;color:#1D1D1D">
+            Aldridge High School
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M6 9l6 6 6-6"></path></svg>
+          </span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;width:300px">
+          <span style="font-size:14px;line-height:20px;color:#545454">Open — Popout list</span>
+          <span style="display:flex;align-items:center;justify-content:space-between;gap:12px;height:56px;box-sizing:border-box;border:1px solid #0A6EFA;border-radius:8px;background:#fff;padding:0 16px;font-size:18px;color:#1D1D1D">
+            Aldridge High School
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;transform:rotate(180deg)"><path d="M6 9l6 6 6-6"></path></svg>
+          </span>
+          <span style="display:flex;flex-direction:column;background:#fff;border-radius:8px;box-shadow:0 4px 12px rgba(29,29,29,0.16),0 0 2px rgba(29,29,29,0.08);padding:8px 0;margin-top:4px">
+            <span style="display:flex;align-items:center;gap:8px;min-height:40px;box-sizing:border-box;padding:4px 8px 4px 4px;background:#F7F8F8">
+              <span style="display:block;width:4px;border-radius:2px;align-self:stretch;background:#082C88"></span>
+              <span style="font-size:16px;line-height:24px;color:#1D1D1D">Aldridge High School</span>
+            </span>
+            <span style="display:flex;align-items:center;gap:8px;min-height:40px;box-sizing:border-box;padding:4px 8px 4px 4px">
+              <span style="display:block;width:4px;border-radius:2px;align-self:stretch;background:transparent"></span>
+              <span style="font-size:16px;line-height:24px;color:#5B5A61">Bayview Middle School</span>
+            </span>
+            <span style="display:flex;align-items:center;gap:8px;min-height:40px;box-sizing:border-box;padding:4px 8px 4px 4px">
+              <span style="display:block;width:4px;border-radius:2px;align-self:stretch;background:transparent"></span>
+              <span style="font-size:16px;line-height:24px;color:#5B5A61">Cedarbrook Elementary</span>
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:260px minmax(0,1fr);gap:32px;border:1px solid #E1E3E5;border-radius:8px;padding:24px">
+      <div>
+        <h3 style="font-weight:700;font-size:18px;line-height:24px;margin-bottom:6px">Buttons</h3>
+        <p style="font-size:14px;line-height:20px;color:#545454;margin:0">Primary is lg 48px, 8px radius, blue-700 #082C88 fill. Ghost is text-only with a leading icon at 8px gap. No transform on press.</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:20px;align-items:center">
+        <button style="display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 24px;border-radius:8px;background:#082C88;border:0;color:#fff;font-family:inherit;font-size:16px;font-weight:700;cursor:pointer" style-hover="background:#061F63">Close</button>
+        <button style="display:inline-flex;align-items:center;gap:8px;font-size:14px;color:#1D1D1D;background:none;border:0;padding:6px 10px;border-radius:8px;cursor:pointer;font-family:inherit" style-hover="background:#F2F3F4">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M12 3v12"></path><path d="M7 11l5 5 5-5"></path><path d="M4 20h16"></path></svg>
+          Download as .csv
+        </button>
+        <a href="#" style="display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:#082C88;text-decoration:underline;text-underline-offset:3px">See 4 more</a>
+      </div>
+    </div>
+
+
+    <div style="display:grid;grid-template-columns:260px minmax(0,1fr);gap:32px;border:1px solid #E1E3E5;border-radius:8px;padding:24px">
+      <div>
+        <h3 style="font-weight:700;font-size:18px;line-height:24px;margin-bottom:6px">Data table</h3>
+        <p style="font-size:14px;line-height:20px;color:#545454;margin:0">Header in Circular Bold 16 with a Text S sub-label, 1px #DDDDDD rules, zebra rows, 16px cell padding. Used for Student activity.</p>
+      </div>
+      <div style="border:1px solid #DDDDDD;overflow-x:auto">
+        <table style="width:100%;border-collapse:collapse;font-size:14px">
+          <thead>
+            <tr>
+              <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top"><span style="display:block;font-weight:700;font-size:16px">Student</span></th>
+              <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top"><span style="display:block;font-weight:700;font-size:16px">Submissions</span><span style="display:block;font-size:14px;color:#545454;margin-top:2px">Turned in this period</span></th>
+              <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top"><span style="display:block;font-weight:700;font-size:16px">Rubric performance</span><span style="display:block;font-size:14px;color:#545454;margin-top:2px">Points earned of points available</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background:#FAFAFA"><td style="padding:16px;border-bottom:1px solid #EFEFEF">Amy Benson</td><td style="padding:16px;border-bottom:1px solid #EFEFEF">8</td><td style="padding:16px;border-bottom:1px solid #EFEFEF">112 of 160 pts</td></tr>
+            <tr style="background:#FFFFFF"><td style="padding:16px;border-bottom:1px solid #EFEFEF">Carlos Ruiz</td><td style="padding:16px;border-bottom:1px solid #EFEFEF">5</td><td style="padding:16px;border-bottom:1px solid #EFEFEF">61 of 100 pts</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:260px minmax(0,1fr);gap:32px;border:1px solid #E1E3E5;border-radius:8px;padding:24px">
+      <div>
+        <h3 style="font-weight:700;font-size:18px;line-height:24px;margin-bottom:6px">Toggletips &amp; tooltips</h3>
+        <p style="font-size:14px;line-height:20px;color:#545454;margin:0">Every "i" icon mounts the Angelou <code>Toggletips</code> component in the <strong>dark</strong> variant — Neutral 700 fill, white type, 16% white ring, 8px radius, arrow pointing at its trigger. Toggletips open on <strong>click</strong> and stay open until dismissed, the close button, or Escape; triggers carry a 24px minimum tap area. Chart points and distribution segments keep plain hover tooltips, since those are data readouts rather than help content.</p>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:32px;flex-wrap:wrap">
+        <x-import component-from-global-scope="NewselaAngelouDesignSystem_52cccf.Toggletips" color="dark" arrow="top" arrow-position="left" heading="" show-close="{{ false }}" auto-focus="{{ false }}" hint-size="300px,120px">Volume metrics count work students submitted. Anything labeled score counts only work that has been scored against a rubric, so scored totals are usually lower than submitted totals.</x-import>
+        <span style="display:flex;flex-direction:column;gap:6px">
+          <span style="font-size:13px;line-height:18px;color:#767676">Chart hover (not a toggletip)</span>
+          <span style="display:inline-block;background:#1D1D1D;color:#fff;font-size:13px;font-weight:700;line-height:20px;padding:4px 10px;border-radius:6px">March 2027 — 71% of points possible</span>
+        </span>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:260px minmax(0,1fr);gap:32px;border:1px solid #E1E3E5;border-radius:8px;padding:24px">
+      <div>
+        <h3 style="font-weight:700;font-size:18px;line-height:24px;margin-bottom:6px">Pill / badge</h3>
+        <p style="font-size:14px;line-height:20px;color:#545454;margin:0">999px radius, 2px outline on the Formative yellow ramp, 40px tall to match the distribution bar beside it. Carries the average score in Rubric performance, always as earned over the criterion's own ceiling.</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+        <span style="display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;min-width:88px;height:40px;background:#FFF9E8;border:2px solid #C98A00;border-radius:999px;font-size:16px;line-height:20px;font-weight:700;color:#8A5A00">5.7 / 8</span>
+        <span style="display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;min-width:88px;height:40px;background:#FFF9E8;border:2px solid #C98A00;border-radius:999px;font-size:16px;line-height:20px;font-weight:700;color:#8A5A00">1.4 / 2</span>
+        <span style="display:inline-flex;align-items:center;height:24px;padding:0 12px;border-radius:999px;background:#0A6EFA;color:#fff;font-size:12px;line-height:16px">Writing</span>
+        <span style="display:inline-flex;align-items:center;height:24px;padding:0 12px;border-radius:999px;background:#FFF4E5;color:#1D1D1D;border:1px solid #C7A475;font-size:12px;line-height:16px">Beige flat</span>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:260px minmax(0,1fr);gap:32px;border:1px solid #E1E3E5;border-radius:8px;padding:24px">
+      <div>
+        <h3 style="font-weight:700;font-size:18px;line-height:24px;margin-bottom:6px">Left content panel</h3>
+        <p style="font-size:14px;line-height:20px;color:#545454;margin:0">232px wide, Neutral #F8F8F8 background, panel always on the left. Active item marked with a Core 500 bar.</p>
+      </div>
+      <div style="width:232px;background:#F8F8F8;padding:20px 24px;box-sizing:border-box">
+        <p style="font-weight:700;font-size:12px;line-height:16px;letter-spacing:1px;color:#767676;margin:0 0 12px">REPORTS</p>
+        <div style="display:flex;flex-direction:column;gap:2px;margin-left:-8px">
+          <span style="display:block;padding:6px 8px;border-radius:8px;font-size:14px;color:#333">Classroom data</span>
+          <span style="display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:8px;font-size:14px;font-weight:700;color:#0A6EFA;background:#E5EFFF"><span style="width:3px;height:16px;background:#0A6EFA;border-radius:2px"></span>Writing report</span>
+          <span style="display:block;padding:6px 8px;border-radius:8px;font-size:14px;color:#333">Power words</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:260px minmax(0,1fr);gap:32px;border:1px solid #E1E3E5;border-radius:8px;padding:24px">
+      <div>
+        <h3 style="font-weight:700;font-size:18px;line-height:24px;margin-bottom:6px">Breadcrumb &amp; headings</h3>
+        <p style="font-size:14px;line-height:20px;color:#545454;margin:0">Breadcrumb in Text S #767676 with SVG chevrons. H1 is the only serif on the page; H2 and below are Circular, sentence case.</p>
+      </div>
+      <div>
+        <nav style="display:flex;align-items:center;gap:6px;font-size:14px;color:#767676;margin-bottom:12px">
+          <a href="#" style="color:#767676;text-decoration:underline">Reports</a>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#767676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg>
+          <span style="color:#1D1D1D">Writing report</span>
+        </nav>
+        <h3 style="font-family:'Noto Serif',Georgia,serif;font-weight:700;font-size:40px;line-height:48px;margin-bottom:8px">Writing report</h3>
+        <h4 style="font-weight:700;font-size:24px;line-height:32px">Writing overview</h4>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:260px minmax(0,1fr);gap:32px;border:1px solid #E1E3E5;border-radius:8px;padding:24px">
+      <div>
+        <h3 style="font-weight:700;font-size:18px;line-height:24px;margin-bottom:6px">Iconography</h3>
+        <p style="font-size:14px;line-height:20px;color:#545454;margin:0">Inline SVG on a 24×24 grid, 1.6–2px stroke, rounded caps and joins. No icon font, no emoji, no unicode glyphs.</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:center;color:#1D1D1D">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5" stroke-linecap="round"></path><circle cx="12" cy="8" r="0.9" fill="currentColor" stroke="none"></circle></svg>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"></path><path d="M7 11l5 5 5-5"></path><path d="M4 20h16"></path></svg>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M8 9h8M8 13h5"></path></svg>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 20V10"></path><path d="M10 20V4"></path><path d="M16 20v-7"></path><path d="M22 20H2"></path></svg>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M11 6l-6 6 6 6"></path></svg>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:260px minmax(0,1fr);gap:32px;border:1px solid #E1E3E5;border-radius:8px;padding:24px">
+      <div>
+        <h3 style="font-weight:700;font-size:18px;line-height:24px;margin-bottom:6px">Modal</h3>
+        <p style="font-size:14px;line-height:20px;color:#545454;margin:0">16px radius, lg shadow, scrim rgba(29,29,29,0.48), close top-right plus a primary Close bottom-right. Backdrop click dismisses.</p>
+      </div>
+      <div style="background:rgba(29,29,29,0.48);padding:24px;border-radius:8px">
+        <div style="background:#fff;border-radius:16px;padding:20px;box-shadow:0 12px 32px rgba(29,29,29,0.24)">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:4px">
+            <h4 style="font-weight:700;font-size:20px;line-height:24px">Submissions by rubric</h4>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+          </div>
+          <p style="font-size:14px;line-height:20px;color:#545454;margin:0 0 16px">All rubrics with submissions in the selected school and date range.</p>
+          <div style="display:flex;justify-content:flex-end">
+            <button style="display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 24px;border-radius:8px;background:#082C88;border:0;color:#fff;font-family:inherit;font-size:16px;font-weight:700;cursor:pointer">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+    <span style="display:inline-flex;align-items:center;height:24px;padding:0 12px;border-radius:999px;background:#FFF4E5;color:#1D1D1D;font-size:12px;line-height:16px;border:1px solid #C7A475">Custom</span>
+    <h2 style="font-weight:700;font-size:24px;line-height:32px">Non-Angelou components</h2>
+  </div>
+  <p style="font-size:16px;line-height:24px;color:#545454;margin:0 0 24px;max-width:70ch">Built for this report because Angelou has no equivalent. Each still uses system colors, type sizes, and 8px spacing — candidates to promote into the system if reporting expands.</p>
+
+  <div style="display:flex;flex-direction:column;gap:20px;margin-bottom:56px">
+
+    <div style="display:grid;grid-template-columns:260px minmax(0,1fr);gap:32px;border:1px solid #E1E3E5;border-radius:8px;padding:24px">
+      <div>
+        <h3 style="font-weight:700;font-size:18px;line-height:24px;margin-bottom:6px">Metric panel</h3>
+        <p style="font-size:14px;line-height:20px;color:#545454;margin:0">Not an Angelou card. Angelou cards are a white surface with a 1px #E1E3E5 border and 8px radius; this is a Core 25 #E5EFFF wash with a #CDD8E9 border (off-token) at 16px radius, wrapping a white 8px-radius surface. No shadow at rest or on hover. Panels holding two datapoints separate them with a 1px #CDD8E9 divider. The header "i" icon is a toggletip trigger.</p>
+      </div>
+      <div style="background:#E5EFFF;border:1px solid #CDD8E9;border-radius:16px;padding:12px;width:300px">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;padding:4px 6px 10px">
+          <span style="display:flex;align-items:center;gap:8px;font-weight:700;font-size:16px">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>Writing totals
+          </span>
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1D1D1D" stroke-width="1.6"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5" stroke-linecap="round"></path><circle cx="12" cy="8" r="0.9" fill="#1D1D1D" stroke="none"></circle></svg>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:20px 16px;display:flex;flex-direction:column;align-items:center;gap:16px">
+          <span style="display:flex;flex-direction:column;align-items:center;gap:2px">
+            <span style="font-size:32px;line-height:40px;font-weight:700;color:#0F3FDE">248</span>
+            <span style="font-size:14px;line-height:20px;text-align:center">Average words per submission</span>
+          </span>
+          <span style="height:1px;background:#CDD8E9;align-self:stretch;display:block"></span>
+          <span style="display:flex;flex-direction:column;align-items:center;gap:2px">
+            <span style="font-size:32px;line-height:40px;font-weight:700;color:#0F3FDE">27</span>
+            <span style="font-size:14px;line-height:20px;text-align:center">Average minutes per submission</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:260px minmax(0,1fr);gap:32px;border:1px solid #E1E3E5;border-radius:8px;padding:24px">
+      <div>
+        <h3 style="font-weight:700;font-size:18px;line-height:24px;margin-bottom:6px">Tracked metric bars</h3>
+        <p style="font-size:14px;line-height:20px;color:#545454;margin:0">Label left, value right-aligned on the same line, then a full-width 12px #EAEBEC track carrying the fill below it. The track runs the full column on every row, so the bars read against a common 100% rather than against each other's endpoints. Each metric owns a color — Assignments #8B1EA4, Submissions #0F3FDE, Feedback requests #0A6EFA, Teacher comments #0F8670 — reused wherever that metric appears. Same construction for submissions by rubric and the submitted-writing bars. All counts derive from one per-student submission total, so the section reconciles: the by-rubric bars sum to the submissions figure, and the selector count matches the student table.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;max-width:460px">
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px"><span style="font-size:14px;line-height:20px">Assignments</span><span style="font-size:16px;font-weight:700">81</span></div>
+          <span style="display:block;height:12px;background:#EAEBEC;border-radius:0 6px 0 0"><span style="display:block;height:12px;border-radius:0 6px 0 0;background:#8B1EA4;width:14%"></span></span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px"><span style="font-size:14px;line-height:20px">Submissions</span><span style="font-size:16px;font-weight:700">426</span></div>
+          <span style="display:block;height:12px;background:#EAEBEC;border-radius:0 6px 0 0"><span style="display:block;height:12px;border-radius:0 6px 0 0;background:#0F3FDE;width:72%"></span></span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px"><span style="font-size:14px;line-height:20px">Feedback requests</span><span style="font-size:16px;font-weight:700">588</span></div>
+          <span style="display:block;height:12px;background:#EAEBEC;border-radius:0 6px 0 0"><span style="display:block;height:12px;border-radius:0 6px 0 0;background:#0A6EFA;width:100%"></span></span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px"><span style="font-size:14px;line-height:20px">Teacher comments</span><span style="font-size:16px;font-weight:700">247</span></div>
+          <span style="display:block;height:12px;background:#EAEBEC;border-radius:0 6px 0 0"><span style="display:block;height:12px;border-radius:0 6px 0 0;background:#0F8670;width:42%"></span></span>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:20px;border:1px solid #E1E3E5;border-radius:8px;padding:24px">
+      <div style="max-width:80ch">
+        <h3 style="font-weight:700;font-size:18px;line-height:24px;margin-bottom:6px">Score distribution bar</h3>
+        <p style="font-size:14px;line-height:20px;color:#545454;margin:0">40px tall, one segment per score point, 2px white gaps, 32px caps on the outer ends. Segments flex proportionally rather than taking fixed percentage widths, so every row ends flush even when a band is narrow. Hover fades siblings to 55% and shows the share for that score.</p>
+        <p style="font-size:14px;line-height:20px;color:#545454;margin:12px 0 0"><strong>Rubrics carry their own scales</strong> — 0–2, 0–4, 0–8 — so nothing about the bar is fixed to a scale. Color is sampled from a five-stop ramp (#C8102E, #F16E00, #E8AB14, #3ECF9A, #0F8670) interpolated across however many points the criterion has, so low→high reads the same at any length. Numeral ink is whichever of Neutral 700 or white has the higher WCAG contrast against its own band. Score labels are dropped on bands under 7% of the row (4% above six segments) rather than crowding. Rubric performance renders <strong>one table per point scale present in the rubric</strong> — "Rubric criteria — scored 0 to 8", "…0 to 2" — built from the distinct ceilings its criteria declare.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 16px;align-items:center">
+        <span style="grid-column:1 / -1;font-size:16px;font-weight:700">Claim &amp; Focus</span>
+        <span style="display:flex;gap:2px;height:40px">
+          <span style="display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;background:#C8102E;color:#FFFFFF;flex:2 1 0;min-width:4%;border-radius:32px 0 0 32px">0</span>
+          <span style="display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;background:#DD3F17;color:#FFFFFF;flex:3 1 0;min-width:4%"></span>
+          <span style="display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;background:#F16E00;color:#1D1D1D;flex:4 1 0;min-width:4%">2</span>
+          <span style="display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;background:#ED8D0A;color:#1D1D1D;flex:6 1 0;min-width:4%">3</span>
+          <span style="display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;background:#E8AB14;color:#1D1D1D;flex:9 1 0;min-width:4%">4</span>
+          <span style="display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;background:#93BD57;color:#1D1D1D;flex:14 1 0;min-width:4%">5</span>
+          <span style="display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;background:#3ECF9A;color:#1D1D1D;flex:20 1 0;min-width:4%">6</span>
+          <span style="display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;background:#27AB85;color:#1D1D1D;flex:25 1 0;min-width:4%">7</span>
+          <span style="display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;background:#0F8670;color:#FFFFFF;flex:17 1 0;min-width:4%;border-radius:0 32px 32px 0">8</span>
+        </span>
+        <span style="justify-self:end;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;min-width:88px;height:40px;background:#FFF9E8;border:2px solid #C98A00;border-radius:999px;font-size:16px;font-weight:700;color:#8A5A00">5.7 / 8</span>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:260px minmax(0,1fr);gap:32px;border:1px solid #E1E3E5;border-radius:8px;padding:24px">
+      <div>
+        <h3 style="font-weight:700;font-size:18px;line-height:24px;margin-bottom:6px">Section header with disclosure</h3>
+        <p style="font-size:14px;line-height:20px;color:#545454;margin:0">Every section heading carries a toggletip stating what that section counts. Volume metrics count submitted work; anything labeled score counts scored work only, so the two can legitimately disagree — the disclosure lives in each section's own words rather than as one page-level note.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <span style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:24px;line-height:32px">Rubric performance
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1D1D1D" stroke-width="1.6" style="flex-shrink:0"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5" stroke-linecap="round"></path><circle cx="12" cy="8" r="0.9" fill="#1D1D1D" stroke="none"></circle></svg>
+        </span>
+        <x-import component-from-global-scope="NewselaAngelouDesignSystem_52cccf.Toggletips" color="dark" arrow="top" arrow-position="left" heading="" show-close="{{ false }}" auto-focus="{{ false }}" hint-size="300px,120px">Score distribution across every scored submission for the selected rubric. Work that was turned in but not yet scored is excluded, so these counts can be lower than submitted writing.</x-import>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:260px minmax(0,1fr);gap:32px;border:1px solid #E1E3E5;border-radius:8px;padding:24px">
+      <div>
+        <h3 style="font-weight:700;font-size:18px;line-height:24px;margin-bottom:6px">Rubric score growth chart</h3>
+        <p style="font-size:14px;line-height:20px;color:#545454;margin:0">SVG line chart with month bands, points at band centers, a grey #F2F3F4 hover band, and dashed <code>5 9</code> spans confined to months with no data. Every criterion is plotted as <strong>percent of the points possible for that criterion</strong>, so a 0–2 criterion and a 0–4 criterion share one axis honestly. The axis <strong>fits the data</strong> — bounds snap to a round step across four intervals with a 40-point minimum window, and 0 only appears when the data reaches it. Y axis is a 1px #B7B7B7 rule with 6px ticks; tick labels and the axis title are HTML positioned over the SVG so they render at a true 13px at any width. On load the lines wipe in left to right via a clip rect, with the axis fixed from the first frame. A category select above the chart narrows it to a single criterion or plots all of them together.</p>
+      </div>
+      <div>
+        <svg viewBox="0 0 560 190" style="width:100%;max-width:560px;height:auto;display:block">
+          <rect x="240" y="10" width="80" height="130" fill="#F2F3F4"></rect>
+          <g stroke="#EFEFEF" stroke-width="1">
+            <line x1="80" y1="10" x2="80" y2="140"></line><line x1="160" y1="10" x2="160" y2="140"></line><line x1="240" y1="10" x2="240" y2="140"></line><line x1="320" y1="10" x2="320" y2="140"></line><line x1="400" y1="10" x2="400" y2="140"></line><line x1="480" y1="10" x2="480" y2="140"></line>
+          </g>
+          <g stroke="#DDDDDD" stroke-width="1"><line x1="40" y1="140" x2="540" y2="140"></line></g>
+          <polyline fill="none" stroke="#8B1EA4" stroke-width="2.5" stroke-linecap="round" points="60,80 120,62 200,96 240,88"></polyline>
+          <polyline fill="none" stroke="#8B1EA4" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="5 9" points="240,88 320,70"></polyline>
+          <polyline fill="none" stroke="#8B1EA4" stroke-width="2.5" stroke-linecap="round" points="320,70 360,61 440,74 520,68"></polyline>
+          <circle cx="60" cy="80" r="4" fill="#8B1EA4"></circle><circle cx="120" cy="62" r="4" fill="#8B1EA4"></circle><circle cx="200" cy="96" r="4" fill="#8B1EA4"></circle><circle cx="360" cy="61" r="4" fill="#8B1EA4"></circle><circle cx="440" cy="74" r="4" fill="#8B1EA4"></circle><circle cx="520" cy="68" r="4" fill="#8B1EA4"></circle>
+          <line x1="40" y1="10" x2="40" y2="140" stroke="#B7B7B7" stroke-width="1"></line>
+          <g stroke="#B7B7B7" stroke-width="1"><line x1="34" y1="10" x2="40" y2="10"></line><line x1="34" y1="42.5" x2="40" y2="42.5"></line><line x1="34" y1="75" x2="40" y2="75"></line><line x1="34" y1="107.5" x2="40" y2="107.5"></line><line x1="34" y1="140" x2="40" y2="140"></line></g>
+          <g font-size="12" fill="#545454" font-family="Circular, Nunito, sans-serif" text-anchor="end">
+            <text x="30" y="14">95</text><text x="30" y="46.5">85</text><text x="30" y="79">75</text><text x="30" y="111.5">65</text><text x="30" y="144">55</text>
+          </g>
+          <g font-size="12" fill="#545454" font-family="Circular, Nunito, sans-serif" text-anchor="middle">
+            <text x="60" y="162">Nov</text><text x="120" y="162">Dec</text><text x="200" y="162">Jan</text><text x="280" y="162">Feb</text><text x="360" y="162">Mar</text><text x="440" y="162">Apr</text><text x="520" y="162">May</text>
+          </g>
+        </svg>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:12px">
+          <span style="display:inline-flex;align-items:center;gap:8px;font-size:14px"><span style="width:10px;height:10px;border-radius:50%;background:#8B1EA4"></span>Organization</span>
+          <span style="display:inline-flex;align-items:center;gap:8px;font-size:14px;color:#545454"><svg width="26" height="10" viewBox="0 0 26 10"><line x1="1" y1="5" x2="25" y2="5" stroke="#767676" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="5 9"></line></svg>No data that month</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:260px minmax(0,1fr);gap:32px;border:1px solid #E1E3E5;border-radius:8px;padding:24px">
+      <div>
+        <h3 style="font-weight:700;font-size:18px;line-height:24px;margin-bottom:6px">Stat block</h3>
+        <p style="font-size:14px;line-height:20px;color:#545454;margin:0">Large Core 700 #0F3FDE figure over a Text S label. Label is centered with <code>text-align:center</code> so it stays centered when it wraps. Used for the Writing totals averages.</p>
+      </div>
+      <div style="display:flex;gap:40px;flex-wrap:wrap">
+        <span style="display:flex;flex-direction:column;align-items:center;gap:2px">
+          <span style="font-size:32px;line-height:40px;font-weight:700;color:#0F3FDE">248</span>
+          <span style="font-size:14px;line-height:20px;text-align:center">Average words per submission</span>
+        </span>
+        <span style="display:flex;flex-direction:column;align-items:center;gap:2px">
+          <span style="display:inline-flex;align-items:center;gap:8px;font-size:20px;line-height:24px;font-weight:700;color:#0F3FDE"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0F3FDE" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>27 min</span>
+          <span style="font-size:14px;line-height:20px;text-align:center">Average minutes per submission</span>
+        </span>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:260px minmax(0,1fr);gap:32px;border:1px solid #E1E3E5;border-radius:8px;padding:24px">
+      <div>
+        <h3 style="font-weight:700;font-size:18px;line-height:24px;margin-bottom:6px">Design bar</h3>
+        <p style="font-size:14px;line-height:20px;color:#545454;margin:0">Prototype scaffolding only — not a product surface. Four levels: the <strong>exploration</strong> name as static text, then a pill holding <strong>audience</strong> → <strong>page</strong> → <strong>variant</strong> dropdowns. Audience jumps to that audience's first page, page navigates within the audience, variant persists across pages. A dot plus phase label shows review status read-only; the timestamp is hardcoded per page and means when that page last changed, never when it loaded. The "Design spec" link appears only on pages that have one. Documented in <code>Design bar snippet.md</code> for reuse.</p>
+      </div>
+      <div style="background:#333333;padding:10px 20px;border-radius:8px;display:flex;align-items:center;align-content:flex-start;align-self:start;flex-wrap:wrap;gap:12px 24px;color:#fff">
+        <span style="font-size:15px;line-height:1.2;white-space:nowrap">Reporting Fall 2026</span>
+        <span style="display:flex;align-items:center;gap:14px;min-height:36px;padding:4px 18px;border-radius:32px;box-sizing:border-box;background:transparent;border:1px solid #B0571B;font-size:15px;white-space:nowrap">
+          <span>Admin experience</span>
+          <span style="width:1px;height:26px;background:#B0571B;display:block"></span>
+          <span>Writing report</span>
+          <span style="width:1px;height:26px;background:#B0571B;display:block"></span>
+          <span>Variant: high adoption</span>
+        </span>
+        <span style="display:flex;align-items:center;gap:10px">
+          <span style="width:14px;height:14px;border-radius:50%;background:#B0571B;display:block"></span>
+          <span style="font-size:15px;white-space:nowrap">Layout phase</span>
+        </span>
+        <span style="display:flex;flex-direction:column;align-items:flex-start;gap:2px;white-space:nowrap">
+          <span style="font-size:13px;opacity:0.6">Updated: 9/4 10:12AM</span>
+          <span style="font-size:13px;opacity:0.85;text-decoration:underline;text-underline-offset:2px">Design spec</span>
+        </span>
+      </div>
+    </div>
+
+  </div>
+
+  <h2 style="font-weight:700;font-size:24px;line-height:32px;margin-bottom:8px">Tokens in use</h2>
+  <p style="font-size:16px;line-height:24px;color:#545454;margin:0 0 24px;max-width:70ch">The full palette and type scale this report draws on.</p>
+  <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:32px">
+    <sc-for list="{{ swatches }}" as="c" hint-placeholder-count="10">
+      <span style="display:flex;flex-direction:column;gap:6px;width:132px">
+        <span style="display:block;height:56px;border-radius:8px;border:1px solid #E1E3E5;background:{{ c.hex }}"></span>
+        <span style="font-size:13px;line-height:18px;font-weight:700">{{ c.name }}</span>
+        <span style="font-size:13px;line-height:18px;color:#767676">{{ c.hex }}</span>
+      </span>
+    </sc-for>
+  </div>
+  <div style="display:flex;flex-direction:column;border:1px solid #E1E3E5;border-radius:8px;padding:20px 24px">
+    <sc-for list="{{ typeScale }}" as="t" hint-placeholder-count="7">
+      <div style="display:flex;align-items:baseline;gap:20px;padding:8px 0;border-bottom:1px solid #EFEFEF">
+        <span style="width:210px;flex-shrink:0;font-size:14px;color:#545454">{{ t.role }}</span>
+        <span style="width:170px;flex-shrink:0;font-size:14px;color:#767676">{{ t.spec }}</span>
+        <span style="font-size:14px;color:#1D1D1D">{{ t.usage }}</span>
+      </div>
+    </sc-for>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1260,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      lastUpdated: 'Updated: 9/24 11:07AM',
+      swatches: [
+        { name: 'Core 500', hex: '#0A6EFA' },
+        { name: 'Blue 700', hex: '#082C88' },
+        { name: 'Core 25', hex: '#E5EFFF' },
+        { name: 'Neutral 700', hex: '#1D1D1D' },
+        { name: 'Neutral 500', hex: '#767676' },
+        { name: 'Neutral 25', hex: '#F7F8F8' },
+        { name: 'Success', hex: '#0F8670' },
+        { name: 'Warning', hex: '#E8AB14' },
+        { name: 'Danger', hex: '#C8102E' },
+        { name: 'Writing (purple)', hex: '#8B1EA4' },
+        { name: 'Aqua 500', hex: '#42CAE7' },
+        { name: 'Popout row', hex: '#F7F8F8' },
+        { name: 'Popout label', hex: '#5B5A61' },
+      ],
+      typeScale: [
+        { role: 'H1 — Noto Serif Bold', spec: '40 / 48', usage: 'Page title only' },
+        { role: 'H2 — Circular Bold', spec: '24 / 32', usage: 'Section headings' },
+        { role: 'H3 — Circular Bold', spec: '20 / 24', usage: 'Modal title' },
+        { role: 'Text L — Circular Book', spec: '18 / 28', usage: 'Section intros, select values' },
+        { role: 'Text M — Circular Book', spec: '16 / 24', usage: 'Body copy, table cells' },
+        { role: 'Text S — Circular Book', spec: '14 / 20', usage: 'Labels, sub-labels, tooltips' },
+        { role: 'Caps — Circular Bold', spec: '12 / 16, 1px tracking', usage: 'REPORTS panel label' },
+      ],
+    };
+  }
+}
+
+</script>
+</body>
+</html>

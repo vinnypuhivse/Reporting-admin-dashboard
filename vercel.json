@@ -1,0 +1,71 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/Reporting Dashboard Admin v1.5 Checkers.dc.html",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/Reporting%20Dashboard%20Admin%20v1.5%20Checkers.dc.html",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/Classroom Data v1.5.dc.html",
+      "destination": "/classroom-data",
+      "permanent": false
+    },
+    {
+      "source": "/Classroom%20Data%20v1.5.dc.html",
+      "destination": "/classroom-data",
+      "permanent": false
+    },
+    {
+      "source": "/Classroom Data v1.0.dc.html",
+      "destination": "/classroom-data",
+      "permanent": false
+    },
+    {
+      "source": "/Classroom%20Data%20v1.0.dc.html",
+      "destination": "/classroom-data",
+      "permanent": false
+    },
+    {
+      "source": "/Dashboard Summary v1.5.dc.html",
+      "destination": "/dashboard-summary",
+      "permanent": false
+    },
+    {
+      "source": "/Dashboard%20Summary%20v1.5.dc.html",
+      "destination": "/dashboard-summary",
+      "permanent": false
+    },
+    {
+      "source": "/Admin Writing Report.dc.html",
+      "destination": "/writing-report",
+      "permanent": false
+    },
+    {
+      "source": "/Admin%20Writing%20Report.dc.html",
+      "destination": "/writing-report",
+      "permanent": false
+    },
+    {
+      "source": "/Writing Report Design Spec.dc.html",
+      "destination": "/writing-report-spec",
+      "permanent": false
+    },
+    {
+      "source": "/Writing%20Report%20Design%20Spec.dc.html",
+      "destination": "/writing-report-spec",
+      "permanent": false
+    },
+    {
+      "source": "/index",
+      "destination": "/",
+      "permanent": false
+    }
+  ]
+}
