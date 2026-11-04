@@ -1,5 +1,4 @@
 {
-  "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
     {
@@ -63,9 +62,47 @@
       "permanent": false
     },
     {
-      "source": "/index",
+      "source": "/index.html",
       "destination": "/",
       "permanent": false
+    },
+    {
+      "source": "/classroom-data.html",
+      "destination": "/classroom-data",
+      "permanent": false
+    },
+    {
+      "source": "/dashboard-summary.html",
+      "destination": "/dashboard-summary",
+      "permanent": false
+    },
+    {
+      "source": "/writing-report.html",
+      "destination": "/writing-report",
+      "permanent": false
+    },
+    {
+      "source": "/writing-report-spec.html",
+      "destination": "/writing-report-spec",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/classroom-data",
+      "destination": "/classroom-data.html"
+    },
+    {
+      "source": "/dashboard-summary",
+      "destination": "/dashboard-summary.html"
+    },
+    {
+      "source": "/writing-report",
+      "destination": "/writing-report.html"
+    },
+    {
+      "source": "/writing-report-spec",
+      "destination": "/writing-report-spec.html"
     }
   ]
 }

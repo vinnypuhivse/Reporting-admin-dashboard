@@ -10,5 +10,5 @@ Static prototype published from the Claude Design handoff. No build step; Vercel
 | `/writing-report` | Admin Writing Report |
 | `/writing-report-spec` | Writing Report Design Spec |
 
-Pages are unmodified copies of the handoff `.dc.html` files. `vercel.json` enables clean URLs and redirects the original
+Pages are unmodified copies of the handoff `.dc.html` files. `vercel.json` rewrites the clean paths to the files and redirects the original
 file names the pages link to (e.g. `Classroom Data v1.5.dc.html#students`) to the clean paths.
