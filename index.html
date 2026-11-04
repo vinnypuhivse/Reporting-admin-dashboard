@@ -23,7 +23,7 @@
 
 <div style="min-height:100vh;background:#fff;font-family:'Circular','Nunito',system-ui,sans-serif;color:#1D1D1D">
 
-<div style="position:sticky;top:0;z-index:200;padding:10px 40px;display:flex;align-items:center;flex-wrap:wrap;gap:12px 24px;border-bottom:1px solid rgba(29,29,29,0.16);background-color:#333333;box-sizing:border-box">
+<div style="position:sticky;top:0;z-index:200;padding:10px 40px;display:none;align-items:center;flex-wrap:wrap;gap:12px 24px;border-bottom:1px solid rgba(29,29,29,0.16);background-color:#333333;box-sizing:border-box">
     <span style="font-size:15px;line-height:1.2;color:#FFFFFF;white-space:nowrap;flex:0 0 auto">Reporting Fall 2026</span>
     <div style="display:flex;align-items:center;gap:14px;min-height:36px;padding:4px 18px;border-radius:32px;box-sizing:border-box;background:transparent;border:1px solid #B0571B;flex:0 1 auto;min-width:0">
       <span style="position:relative;display:flex;align-items:center;flex:0 0 auto">
@@ -197,7 +197,7 @@
       </div>
 
 
-      <div style="display:flex;flex-wrap:wrap;align-items:flex-end;gap:24px;margin-bottom:36px">
+      <div ref="{{ filterRowRef }}" style="position:sticky;top:{{ filterTop }};z-index:90;background:#fff;padding:16px 32px;margin:-16px -32px 20px;border-bottom:1px solid {{ filterBorder }};box-shadow:{{ filterShadow }};transition:box-shadow 160ms ease, border-color 160ms ease;display:flex;flex-wrap:wrap;align-items:flex-end;gap:24px">
         <sc-if value="{{ showDashTeacherPicker }}" hint-placeholder-val="{{ false }}">
           <div style="display:flex;flex-direction:column;gap:6px;width:280px">
             <label for="dashsch" style="font-size:12px;font-weight:700;color:#1D1D1D">Filter by school</label>
@@ -1467,12 +1467,17 @@ class Component extends DCLogic {
   }
   goTo(file) { if (typeof window !== 'undefined') window.location.href = file; }
   conceptVals() {
+    if (!this.filterRowRef) this.filterRowRef = el => { this._filterEl = el; };
     const exp = this.THIS_EXPERIENCE;
     this.writeConcept('om-concept-experience', exp);
     const list = this.VARIANTS[exp] || [];
     const variant = list.indexOf(this.state.variant) >= 0 ? this.state.variant : list[0];
     return {
-      lastUpdated: 'Updated: 11/3 6:53PM',
+      lastUpdated: 'Updated: 11/3 7:15PM',
+      filterRowRef: this.filterRowRef,
+      filterTop: '0px',
+      filterBorder: this.state.filterStuck ? '#DDDDDD' : 'transparent',
+      filterShadow: this.state.filterStuck ? '0 4px 8px rgba(29,29,29,0.08)' : 'none',
       experience: exp, experiences: this.EXPERIENCES,
       page: exp === 'Admin experience' ? 'Reporting dashboard v1.5 Checkers' : this.THIS_PAGE, pages: (this.PAGES[exp] || []).map((p) => p.label),
       phaseLabel: this.props.phase ?? 'Layout phase',
@@ -2451,11 +2456,15 @@ class Component extends DCLogic {
   }
   componentDidMount() {
     try { const ps = window.localStorage.getItem('rd-v15-school'); this._savedSchool = ps; if (ps) this.setState({ adminSchool: ps }); const gb = window.localStorage.getItem('rd-v15-grade-band'); this._savedBand = gb; if (gb && this.BAND_F[gb]) this.setState({ gradeBand: gb }); } catch (e) {} this._schoolLoaded = true;
+    this._onStickScroll = () => { if (!this._filterEl) return; const top = this._filterEl.getBoundingClientRect().top; const stuck = window.scrollY > 0 && top <= 0.5; if (stuck !== !!this.state.filterStuck) this.setState({ filterStuck: stuck }); };
+    window.addEventListener('scroll', this._onStickScroll, { passive: true });
+    window.addEventListener('resize', this._onStickScroll);
     this.setState({
       experience: this.readConcept('om-concept-experience', 'Admin experience'),
       variant: this.readConcept('om-concept-variant', 'Has all products'),
     }); this._key = this.ctxKey(); this.startTween(); }
   componentWillUnmount() {
+    if (this._onStickScroll) { window.removeEventListener('scroll', this._onStickScroll); window.removeEventListener('resize', this._onStickScroll); }
     if (typeof window === 'undefined') return;
     if (this._raf) window.cancelAnimationFrame(this._raf);
     if (this._settle) window.clearTimeout(this._settle);
