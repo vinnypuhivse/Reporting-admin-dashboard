@@ -23,7 +23,7 @@
 
 <div style="min-height:100vh;background:#fff;font-family:'Circular','Nunito',system-ui,sans-serif;color:#1D1D1D">
 
-<div ref="{{ conceptBarRef }}" style="position:sticky;top:0;z-index:200;padding:10px 40px;display:flex;align-items:center;flex-wrap:wrap;gap:12px 24px;border-bottom:1px solid rgba(29,29,29,0.16);background-color:#333333;box-sizing:border-box">
+<div ref="{{ conceptBarRef }}" style="position:sticky;top:0;z-index:200;padding:10px 40px;display:none;align-items:center;flex-wrap:wrap;gap:12px 24px;border-bottom:1px solid rgba(29,29,29,0.16);background-color:#333333;box-sizing:border-box">
     <span style="font-size:15px;line-height:1.2;color:#FFFFFF;white-space:nowrap;flex:0 0 auto">Reporting Fall 2026</span>
     <div style="display:flex;align-items:center;gap:14px;min-height:36px;padding:4px 18px;border-radius:32px;box-sizing:border-box;background:transparent;border:1px solid #B0571B;flex:0 1 auto;min-width:0">
       <span style="position:relative;display:flex;align-items:center;flex:0 0 auto">
@@ -3011,7 +3011,7 @@ class Component extends DCLogic {
     this.bindTipDismiss();
     try { const ps = window.localStorage.getItem('rd-v15-school'); this._savedSchool = ps; if (ps) this.setState({ adminSchool: ps }); } catch (e) {} this._schoolLoaded = true;
     try { const sv = JSON.parse(window.localStorage.getItem('rd-searched-teachers') || '[]'); if (Array.isArray(sv) && sv.length) this.setState({ searchedTeachers: sv }); } catch (e) {}
-    this._onStickScroll = () => { if (!this._filterEl) return; const top = this._filterEl.getBoundingClientRect().top; const stuck = window.scrollY > 0 && top <= (this.state.barH || 57) + 0.5; if (stuck !== !!this.state.filterStuck) this.setState({ filterStuck: stuck }); };
+    this._onStickScroll = () => { if (!this._filterEl) return; const top = this._filterEl.getBoundingClientRect().top; const stuck = window.scrollY > 0 && top <= 0.5; if (stuck !== !!this.state.filterStuck) this.setState({ filterStuck: stuck }); };
     window.addEventListener('scroll', this._onStickScroll, { passive: true });
     window.addEventListener('resize', this._onStickScroll);
     if (this._barEl && typeof ResizeObserver !== 'undefined') {
@@ -3159,7 +3159,7 @@ class Component extends DCLogic {
     return {
       stopTip: this.stopTip,
       tipW: 300,
-      lastUpdated: 'Updated: 11/3 11:49AM',
+      lastUpdated: 'Updated: 11/3 7:21PM',
       rowsPerPageOptions: ['10', '25'],
       pageSizeOptions: ['10', '25', '50'],
       isElaWip: this.state.tab === 'elawip',
@@ -4139,7 +4139,7 @@ class Component extends DCLogic {
     const showStudentTableV = (!isAdmin || lvl === 'class' || lvl === 'student' || lvl === 'teacher') && !(isAdmin && isClass && tab === 'writing');
     return {
       conceptBarRef: this.conceptBarRef,
-      filterTop: (st.barH || 57) + 'px',
+      filterTop: '0px',
       filterRowRef: this.filterRowRef,
       filterBorder: st.filterStuck ? '#DDDDDD' : 'transparent',
       filterShadow: st.filterStuck ? '0 4px 8px rgba(29,29,29,0.08)' : 'none',

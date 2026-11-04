@@ -65,7 +65,7 @@
 
 <div style="min-height:100vh;background:#fff;font-family:'Circular','Nunito',system-ui,sans-serif;color:#1D1D1D">
 
-<div data-r="conceptbar" style="position:sticky;top:0;z-index:200;padding:10px 40px;display:flex;align-items:center;flex-wrap:wrap;gap:12px 24px;border-bottom:1px solid rgba(29,29,29,0.16);background-color:#333333;box-sizing:border-box">
+<div data-r="conceptbar" style="position:sticky;top:0;z-index:200;padding:10px 40px;display:none;align-items:center;flex-wrap:wrap;gap:12px 24px;border-bottom:1px solid rgba(29,29,29,0.16);background-color:#333333;box-sizing:border-box">
     <span style="font-size:15px;line-height:1.2;color:#FFFFFF;white-space:nowrap;flex:0 0 auto">Reporting Fall 2026</span>
     <div style="display:flex;align-items:center;gap:14px;min-height:36px;padding:4px 18px;border-radius:32px;box-sizing:border-box;background:transparent;border:1px solid #B0571B;flex:0 1 auto;min-width:0">
       <span style="position:relative;display:flex;align-items:center;flex:0 0 auto">
@@ -96,7 +96,7 @@
     </span>
   </div>
 
-  <header data-r="header" style="position:sticky;top:57px;z-index:100;background:#fff;border-bottom:1px solid #DDDDDD;height:64px;display:flex;align-items:center;padding:0 40px;gap:32px">
+  <header data-r="header" style="position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid #DDDDDD;height:64px;display:flex;align-items:center;padding:0 40px;gap:32px">
     <a href="#" style="display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0">
       <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><path d="M 32 32 L 0 32 L 0 0 L 32 0 L 32 32 Z M 15.145 26.95 L 5.023 26.95 L 5.023 5.023 L 15.145 5.023 L 15.145 26.95 Z M 26.976 26.974 L 16.83 26.974 L 16.83 5.047 L 21.928 5.047 C 24.708 5.047 26.976 7.315 26.976 10.096 L 26.976 26.974 Z" fill="#0A6EFA" fill-rule="evenodd"></path></svg>
       <span style="font-weight:700;font-size:23px;color:#0A6EFA;letter-spacing:-0.5px">newsela</span>
@@ -236,7 +236,7 @@
 
       <sc-if value="{{ isClass }}" hint-placeholder-val="{{ true }}">
         <h1 data-r="pagetitle" style="font-family:'Noto Serif',Georgia,serif;font-weight:700;font-size:40px;line-height:48px;margin:0 0 24px">{{ dataPageTitle }}</h1>
-        <div data-r="filterbar" ref="{{ filterBarRef }}" style="position:sticky;top:121px;z-index:90;background:#fff;display:flex;flex-wrap:wrap;gap:16px;padding:16px 32px;margin:-16px -32px 20px;transition:box-shadow 150ms ease;box-shadow:{{ filterShadow }}">
+        <div data-r="filterbar" ref="{{ filterBarRef }}" style="position:sticky;top:64px;z-index:90;background:#fff;display:flex;flex-wrap:wrap;gap:16px;padding:16px 32px;margin:-16px -32px 20px;transition:box-shadow 150ms ease;box-shadow:{{ filterShadow }}">
           <div style="display:flex;flex-direction:column;gap:6px;flex:0 1 300px;min-width:240px">
             <span style="font-size:14px;line-height:20px;font-weight:700;color:#1D1D1D">Select school</span>
             <dc-import name="PopoutSelect" value="{{ adminSchool }}" options="{{ adminSchools }}" on-change="{{ onAdminSchool }}" height="48" font-size="18" hint-size="100%,48px" style="width:100%"></dc-import>
@@ -2445,7 +2445,7 @@ class Component extends DCLogic {
 
   componentDidMount() {
     this.bindTipDismiss();
-    this._onStick = () => { const el = this.filterBarRef.current; if (!el) return; const prev = el.previousElementSibling; const stuck = el.getBoundingClientRect().top <= 121.5 && !!prev && prev.getBoundingClientRect().bottom < 110; if (stuck !== !!this.state.filterStuck) this.setState({ filterStuck: stuck }); };
+    this._onStick = () => { const el = this.filterBarRef.current; if (!el) return; const prev = el.previousElementSibling; const stuck = el.getBoundingClientRect().top <= 64.5 && !!prev && prev.getBoundingClientRect().bottom < 53; if (stuck !== !!this.state.filterStuck) this.setState({ filterStuck: stuck }); };
     window.addEventListener('scroll', this._onStick, true); this._onStick();
     const firstSchool = this.SCHOOLS.slice().sort()[0];
     this.setState({
@@ -4297,7 +4297,7 @@ class Component extends DCLogic {
       ...this.schoolSearchVals((name) => this.setState({ adminSchool: name, adminTeacher: null, classroom: 'All classes', view: 'class', expandedSchool: name === 'All schools' ? null : name })),
       dataPageTitle: 'Writing report',
       stopTip: this.stopTip,
-      lastUpdated: 'Updated: 11/3 4:29PM',
+      lastUpdated: 'Updated: 11/3 7:21PM',
       rowsPerPageOptions: ['10', '25'],
       pageSizeOptions: ['10', '25', '50'],
       showAdminTree: false,
