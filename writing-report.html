@@ -235,7 +235,18 @@
       </nav>
 
       <sc-if value="{{ isClass }}" hint-placeholder-val="{{ true }}">
-        <h1 data-r="pagetitle" style="font-family:'Noto Serif',Georgia,serif;font-weight:700;font-size:40px;line-height:48px;margin:0 0 24px">{{ dataPageTitle }}</h1>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:0 0 24px">
+          <h1 data-r="pagetitle" style="font-family:'Noto Serif',Georgia,serif;font-weight:700;font-size:40px;line-height:48px;margin:0">{{ dataPageTitle }}</h1>
+          <div style="position:relative">
+            <button type="button" aria-haspopup="menu" aria-expanded="{{ csvMenuOpen }}" onClick="{{ toggleCsvMenu }}" onBlur="{{ closeCsvMenu }}" style="display:inline-flex;align-items:center;gap:8px;font-size:14px;color:#1D1D1D;background:none;border:0;padding:6px 10px;border-radius:8px;cursor:pointer;font-family:inherit"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="flex-shrink:0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"></path><path d="M7 11l5 5 5-5"></path><path d="M4 20h16"></path></svg>Download as .csv</button>
+            <sc-if value="{{ csvMenuOpen }}" hint-placeholder-val="{{ false }}">
+              <div role="menu" style="position:absolute;top:calc(100% + 4px);right:0;z-index:120;background:#fff;border:1px solid #DDDDDD;border-radius:8px;box-shadow:0 8px 24px rgba(29,29,29,0.16);padding:4px;min-width:220px;display:flex;flex-direction:column">
+                <button type="button" role="menuitem" onMouseDown="{{ pickCsvItem }}" style="text-align:left;padding:10px 14px;border:0;background:transparent;border-radius:6px;font-family:inherit;font-size:16px;line-height:24px;color:#1D1D1D;white-space:nowrap;cursor:pointer" style-hover="background:#E5EFFF">Download all rubrics</button>
+                <button type="button" role="menuitem" onMouseDown="{{ pickCsvItem }}" style="text-align:left;padding:10px 14px;border:0;background:transparent;border-radius:6px;font-family:inherit;font-size:16px;line-height:24px;color:#1D1D1D;white-space:nowrap;cursor:pointer" style-hover="background:#E5EFFF">Download current rubric</button>
+              </div>
+            </sc-if>
+          </div>
+        </div>
         <div data-r="filterbar" ref="{{ filterBarRef }}" style="position:sticky;top:64px;z-index:90;background:#fff;display:flex;flex-wrap:wrap;gap:16px;padding:16px 32px;margin:-16px -32px 20px;transition:box-shadow 150ms ease;box-shadow:{{ filterShadow }}">
           <div style="display:flex;flex-direction:column;gap:6px;flex:0 1 300px;min-width:240px">
             <span style="font-size:14px;line-height:20px;font-weight:700;color:#1D1D1D">Select school</span>
@@ -2111,7 +2122,7 @@
             </div>
           </div>
         </section>
-        <div style="position:fixed;inset:0;background:rgba(29,29,29,0.48);display:{{ rubricModalShow }};align-items:center;justify-content:center;z-index:80;padding:24px" onClick="{{ closeRubricModal }}">
+        <div style="position:fixed;inset:0;background:rgba(29,29,29,0.48);display:{{ rubricModalShow }};align-items:center;justify-content:center;z-index:1000;padding:24px" onClick="{{ closeRubricModal }}">
           <div onClick="{{ stopModalClick }}" style="background:#fff;border-radius:16px;padding:24px;width:560px;max-width:100%;max-height:80vh;overflow-y:auto;box-shadow:0 12px 32px rgba(29,29,29,0.24)">
             <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:4px">
               <h3 style="font-weight:700;font-size:20px;line-height:24px;margin:0">Submissions by rubric</h3>
@@ -2139,7 +2150,6 @@
         <section style="margin-bottom:48px">
           <div data-r="sectionhead" style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:8px">
             <h2 style="font-weight:700;font-size:24px;line-height:32px;margin:0;display:inline-flex;align-items:center;gap:8px">Performance over time</h2>
-            <button style="display:inline-flex;align-items:center;gap:8px;font-size:14px;color:#1D1D1D;background:none;border:0;padding:6px 10px;border-radius:8px;cursor:pointer;font-family:inherit"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="flex-shrink:0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"></path><path d="M7 11l5 5 5-5"></path><path d="M4 20h16"></path></svg>Download as .csv</button>
           </div>
           <p style="font-size:16px;line-height:24px;color:#545454;margin:0 0 20px">Average score per criterion month over month, as a percent of the points possible for that criterion, across all teachers and submissions.</p>
           <div style="border:1px solid #DDDDDD;background:#fff;border-radius:8px;padding:24px">
@@ -2249,7 +2259,6 @@
         <section style="margin-bottom:48px">
           <div data-r="sectionhead" style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:8px">
             <h2 style="font-weight:700;font-size:24px;line-height:32px;margin:0;display:inline-flex;align-items:center;gap:8px">Rubric performance</h2>
-            <button style="display:inline-flex;align-items:center;gap:8px;font-size:14px;color:#1D1D1D;background:none;border:0;padding:6px 10px;border-radius:8px;cursor:pointer;font-family:inherit"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="flex-shrink:0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"></path><path d="M7 11l5 5 5-5"></path><path d="M4 20h16"></path></svg>Download as .csv</button>
           </div>
           <p style="font-size:16px;line-height:24px;color:#545454;margin:0 0 20px">Score distribution and average score per rubric criterion across all teachers and submissions.</p>
           <sc-for list="{{ rubricTables }}" as="tbl" hint-placeholder-count="2">
@@ -2280,7 +2289,6 @@
         <section style="margin-bottom:48px">
           <div data-r="sectionhead" style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:8px">
             <h2 style="font-weight:700;font-size:24px;line-height:32px;margin:0;display:inline-flex;align-items:center;gap:8px">Student activity</h2>
-            <button style="display:inline-flex;align-items:center;gap:8px;font-size:14px;color:#1D1D1D;background:none;border:0;padding:6px 10px;border-radius:8px;cursor:pointer;font-family:inherit"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="flex-shrink:0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"></path><path d="M7 11l5 5 5-5"></path><path d="M4 20h16"></path></svg>Download as .csv</button>
           </div>
           <p style="font-size:16px;line-height:24px;color:#545454;margin:0 0 20px">See student activity and performance on the selected rubric, including their average score, word count and AI feedback requests, plus the criteria they do best and worst on.</p>
           <div style="border:1px solid #DDDDDD;background:#fff;overflow-x:auto">
@@ -2512,7 +2520,12 @@ class Component extends DCLogic {
   PAGES = {
     'Teacher experience': [
       { label: 'Reporting dashboard', file: 'Reporting Dashboard.dc.html' },
-      { label: 'Classroom data', file: 'Classroom Data v1.0.dc.html' },
+      { label: 'Classroom data v1.0', file: 'Classroom Data v1.0.dc.html' },
+      { label: 'Classroom data v1.1', file: 'Classroom Data v1.1.dc.html' },
+      { label: 'Classroom data v1.2', file: 'Classroom Data v1.2.dc.html' },
+      { label: 'Classroom data v1.3', file: 'Classroom Data v1.3.dc.html' },
+      { label: 'Classroom data v1.4', file: 'Classroom Data v1.4.dc.html' },
+      { label: 'Classroom data v1.5', file: 'Classroom Data v1.5.dc.html' },
     ],
     'Admin experience': [
       { label: 'Reporting dashboard v1.0', file: 'Reporting Dashboard Admin v1.0.dc.html' },
@@ -4088,9 +4101,20 @@ class Component extends DCLogic {
       return Math.max(1, Math.round(base * this.t()));
     };
     const rubricTotal = (rubric) => STUDENTS.reduce((sum, s) => sum + studentSubs(rubric, displayName(s.name)), 0);
-    const RUBRIC_OPTIONS = RUBRIC_DEFS.map(d => d.name + ' ' + d.version + ' \u00B7 ' + rubricTotal(d.name).toLocaleString() + ' submissions');
+    // Every version of every rubric is selectable: a rubric at vN offers vN … v1, newest
+    // first. Older versions reuse the latest criteria; the latest version counts under the
+    // bare rubric name, older ones under "<Name> v<N>" so each gets its own stable count.
+    const RUBRIC_VERSIONS = [];
+    RUBRIC_DEFS.forEach((d) => {
+      const latest = parseInt(String(d.version).replace(/^v/, ''), 10) || 1;
+      for (let n = latest; n >= 1; n--) {
+        RUBRIC_VERSIONS.push({ name: d.name, version: 'v' + n, criteria: d.criteria,
+          countKey: n === latest ? d.name : d.name + ' v' + n });
+      }
+    });
+    const RUBRIC_OPTIONS = RUBRIC_VERSIONS.map(d => d.name + ' ' + d.version + ' \u00B7 ' + rubricTotal(d.countKey).toLocaleString() + ' submissions');
     const selectedRubric = RUBRIC_OPTIONS.indexOf(st.selectedRubric) >= 0 ? st.selectedRubric : RUBRIC_OPTIONS[0];
-    const activeRubric = RUBRIC_DEFS[Math.max(0, RUBRIC_OPTIONS.indexOf(selectedRubric))];
+    const activeRubric = RUBRIC_VERSIONS[Math.max(0, RUBRIC_OPTIONS.indexOf(selectedRubric))];
     const catPick = activeRubric.criteria.some((c) => c.label === st.category) ? st.category : 'All categories';
     const shownCriteria = catPick === 'All categories'
       ? activeRubric.criteria
@@ -4227,7 +4251,7 @@ class Component extends DCLogic {
       return {
         title: 'Rubric criteria \u2014 scored 0 to ' + max,
         name: activeRubric.name + ' ' + activeRubric.version,
-        meta: 'Based on ' + rubricTotal(activeRubric.name).toLocaleString() + ' submissions',
+        meta: 'Based on ' + rubricTotal(activeRubric.countKey).toLocaleString() + ' submissions',
         range: 'Point score range: 0-' + max,
         rows: sortRows(rows.map(c => ({ label: c.label, segs: seg(c.dist, c.key), avg: critAvg(c).toFixed(1) + ' / ' + max, _avg: critAvg(c), _top: topShare(c.dist) }))),
       };
@@ -4297,7 +4321,7 @@ class Component extends DCLogic {
       ...this.schoolSearchVals((name) => this.setState({ adminSchool: name, adminTeacher: null, classroom: 'All classes', view: 'class', expandedSchool: name === 'All schools' ? null : name })),
       dataPageTitle: 'Writing report',
       stopTip: this.stopTip,
-      lastUpdated: 'Updated: 11/3 7:21PM',
+      lastUpdated: 'Updated: 11/6 1:20PM',
       rowsPerPageOptions: ['10', '25'],
       pageSizeOptions: ['10', '25', '50'],
       showAdminTree: false,
@@ -4386,6 +4410,11 @@ class Component extends DCLogic {
       rubricOptions: RUBRIC_OPTIONS,
       selectedRubric,
       onSelectRubric: (e) => this.setState({ selectedRubric: e.target.value }),
+      csvMenuOpen: !!st.csvMenuOpen,
+      toggleCsvMenu: () => this.setState({ csvMenuOpen: !this.state.csvMenuOpen }),
+      closeCsvMenu: () => { if (this.state.csvMenuOpen) this.setState({ csvMenuOpen: false }); },
+      // Fires on mousedown, before the trigger's blur. No download yet.
+      pickCsvItem: (e) => { e.preventDefault(); this.setState({ csvMenuOpen: false }); },
       filterBarRef: this.filterBarRef || (this.filterBarRef = React.createRef()),
       filterShadow: this.state.filterStuck ? '0 6px 6px -4px rgba(29,29,29,0.12)' : 'none',
       rubricRows, conventionSegs, rubricTables,
@@ -4740,7 +4769,7 @@ class Component extends DCLogic {
         const nm = displayName(stu.name);
         const h = (k) => this.hash(this.ctxKey() + '|' + nm + k);
         const crits = activeRubric.criteria;
-        const subs = studentSubs(activeRubric.name, nm);
+        const subs = studentSubs(activeRubric.countKey, nm);
         const rubricMax = crits.reduce((a, c) => a + c.max, 0);
         const avgScore = rubricMax * (0.42 + h('pts') * 0.45);
         const words = 140 + Math.round(h('wc') * 260);
