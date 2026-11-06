@@ -197,7 +197,7 @@
       </div>
 
 
-      <div ref="{{ filterRowRef }}" style="position:sticky;top:64px;z-index:90;background:#fff;padding:16px 32px;margin:-16px -32px 20px;transition:box-shadow 150ms ease;box-shadow:{{ filterShadow }};display:flex;flex-wrap:wrap;align-items:flex-end;gap:24px">
+      <div ref="{{ filterRowRef }}" style="position:sticky;top:64px;z-index:90;background:#fff;padding:16px 32px;margin:-16px -32px 20px;transition:box-shadow 150ms ease;box-shadow:{{ filterShadow }};display:flex;flex-wrap:wrap;align-items:flex-end;gap:16px">
         <sc-if value="{{ showDashTeacherPicker }}" hint-placeholder-val="{{ false }}">
           <div style="display:flex;flex-direction:column;gap:6px;width:280px">
             <label for="dashsch" style="font-size:12px;font-weight:700;color:#1D1D1D">Filter by school</label>
@@ -233,6 +233,7 @@
           <label style="font-size:12px;font-weight:700;color:#1D1D1D">Date range</label>
           <dc-import name="PopoutSelect" value="{{ dateRange }}" options="{{ dateRanges }}" on-change="{{ onDateRange }}" height="48" font-size="16" hint-size="100%,48px" style="width:100%"></dc-import>
         </div>
+        <button type="button" onClick="{{ onClearFilters }}" style="height:48px;display:inline-flex;align-items:center;padding:0 4px;border:0;background:none;font-family:inherit;font-size:16px;font-weight:400;color:#082C88;cursor:pointer" style-hover="text-decoration:underline;text-underline-offset:3px">Clear filters</button>
       </div>
 
       <sc-if value="{{ isAdmin }}" hint-placeholder-val="{{ false }}">
@@ -1487,7 +1488,7 @@ class Component extends DCLogic {
     const list = this.VARIANTS[exp] || [];
     const variant = list.indexOf(this.state.variant) >= 0 ? this.state.variant : list[0];
     return {
-      lastUpdated: 'Updated: 11/6 3:55PM',
+      lastUpdated: 'Updated: 11/6 5:45PM',
       filterRowRef: this.filterRowRef,
       filterShadow: this.state.filterStuck ? '0 6px 6px -4px rgba(29,29,29,0.12)' : 'none',
       experience: exp, experiences: this.EXPERIENCES,
@@ -2190,6 +2191,7 @@ class Component extends DCLogic {
       gradeBand: st.gradeBand || 'All grades',
       gradeBands: ['All grades', 'Elementary school (K–5)', 'Middle school (6–8)', 'High school (9–12)'],
       onGradeBand: (e) => this.setState({ gradeBand: e.target.value }),
+      onClearFilters: () => this.setState({ adminSchool: 'All schools', expandedSchool: null, gradeBand: 'All grades', dateRange: 'July to date', classroom: 'All classes', expanded: null, lexGrade: null, schoolQuery: '', skPage: 0 }),
       ...this.drillVals([school, st.gradeBand || 'All grades', st.dateRange].join(' · ')),
       insightsTitle: allSchools ? 'District learning insights' : school + ' learning insights',
       highlightCards: (() => {
@@ -2377,8 +2379,8 @@ class Component extends DCLogic {
     };
   }
   KIND = {
-    es: { ratio: 14, bands: { es: 1 } }, int: { ratio: 15, bands: { es: 0.67, ms: 0.33 } }, ms: { ratio: 15, bands: { ms: 1 } },
-    hs: { ratio: 16, bands: { hs: 1 } }, k12: { ratio: 14, bands: { es: 0.45, ms: 0.25, hs: 0.3 } }, acad: { ratio: 14, bands: { ms: 0.45, hs: 0.55 } },
+    es: { ratio: 14, classes: 1, bands: { es: 1 } }, int: { ratio: 15, classes: 2, bands: { es: 0.67, ms: 0.33 } }, ms: { ratio: 15, classes: 5, bands: { ms: 1 } },
+    hs: { ratio: 16, classes: 5, bands: { hs: 1 } }, k12: { ratio: 14, classes: 4, bands: { es: 0.45, ms: 0.25, hs: 0.3 } }, acad: { ratio: 14, classes: 5, bands: { ms: 0.45, hs: 0.55 } },
   };
   BAND_OFF = { es: 3, ms: -4, hs: -1 };
   BAND_LEX = { es: 640, ms: 930, hs: 1120 };
@@ -2420,13 +2422,35 @@ class Component extends DCLogic {
   }
   saSchool() { const s = this.state.adminSchool || 'All schools'; return this.SCHOOLS.indexOf(s) >= 0 ? s : null; }
   saUnits() { const sc = this.saSchool(); return sc ? (this.TEACHERS_BY_SCHOOL[sc] || []).slice() : this.bandSchools(); }
+  teacherSplit(school) {
+    this._split = this._split || {};
+    const key = school + '|' + this.state.dateRange + '|' + this.state.variant + '|' + (this.bandKey() || '');
+    if (this._split[key]) return this._split[key];
+    const p = this.profile(school), s = this.schoolStats(school), r = this.range();
+    const names = this.TEACHERS_BY_SCHOOL[school] || [];
+    const ranked = names.slice().sort((a, b) => this.hash(a + '|act') - this.hash(b + '|act'));
+    const activeSet = new Set(ranked.slice(0, s.activeT));
+    const info = {};
+    names.forEach(n => {
+      const size = 22 + Math.round(this.hash(n + '|size') * 8);
+      const active = activeSet.has(n);
+      info[n] = { size, roster: p.kind.classes * size, active, w: active ? p.kind.classes * size * (0.74 + this.hash(n + '|reach') * 0.22) : 0 };
+    });
+    const act = names.filter(n => info[n].active);
+    const W = act.reduce((a, n) => a + info[n].w, 0) || 1;
+    const split = (total, k) => { let acc = 0; act.forEach((n, i) => { const v = i === act.length - 1 ? total - acc : Math.round(total * info[n].w / W); info[n][k] = Math.max(0, v); acc += info[n][k]; }); };
+    split(s.views, 'views'); split(s.assigns, 'assigns');
+    act.forEach(n => { info[n].reach = Math.min(info[n].roster, Math.round(info[n].roster * Math.min(0.96, 0.74 + this.hash(n + '|reach') * 0.22) * r.uq)); });
+    return (this._split[key] = info);
+  }
   teacherStats(name, school) {
-    const S = this.schoolStats(school), nT = Math.max(1, (this.TEACHERS_BY_SCHOOL[school] || []).length);
-    const j = (k) => 0.6 + this.hash(name + '|' + school + '|tj|' + k) * 0.8;
-    const out = { tch: 1 };
-    ['stu', 'activeT', 'reach', 'quizTakers', 'views', 'assigns', 'prints', 'quizzes', 'annots', 'cfus'].forEach(k => { out[k] = Math.round(S[k] / nT * j(k)); });
-    out.reach = Math.min(out.stu, out.reach); out.quizTakers = Math.min(out.reach, out.quizTakers);
-    out.off = S.off + (this.hash(name + '|' + school + '|toff') - 0.5) * 16;
+    const p = this.profile(school), S = this.schoolStats(school);
+    const t = (this.teacherSplit(school) || {})[name] || { size: 26, roster: p.kind.classes * 26, active: false };
+    const reach = t.active ? t.reach : 0;
+    const f = S.reach ? reach / S.reach : 0;
+    const out = { stu: t.roster, tch: 1, activeT: t.active ? 1 : 0, reach, views: t.active ? t.views : 0, assigns: t.active ? t.assigns : 0 };
+    ['quizTakers', 'prints', 'quizzes', 'annots', 'cfus'].forEach(k => { out[k] = Math.round(S[k] * f); });
+    out.off = S.off + (this.hash(name + '|perf') - 0.5) * 16;
     out.lex = S.lex;
     return out;
   }

@@ -488,10 +488,10 @@
               <thead>
                 <tr>
                   <sc-for list="{{ classAllCols }}" as="col" hint-placeholder-count="9">
-                    <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap">
-                      <span style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D">{{ col.label }}
-                        <svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></svg>
-                      </span>
+                    <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap" aria-sort="{{ col.ariaSort }}">
+                      <button type="button" onClick="{{ col.onSort }}" style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D;background:none;border:0;padding:0;margin:0;font-family:inherit;line-height:inherit;cursor:pointer;text-align:left">{{ col.label }}
+                        <svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><g opacity="{{ col.upOp }}"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path></g><g opacity="{{ col.downOp }}"><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></g></svg>
+                      </button>
                       <span style="display:block;font-weight:400;font-size:14px;color:#545454;margin-top:8px;line-height:20px">{{ col.sub }}</span>
                     </th>
                   </sc-for>
@@ -540,8 +540,8 @@
                 <thead>
                   <tr>
                     <sc-for list="{{ adminCols }}" as="col" hint-placeholder-count="6">
-                      <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap">
-                        <span style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D">{{ col.label }}<svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></svg></span>
+                      <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap" aria-sort="{{ col.ariaSort }}">
+                        <button type="button" onClick="{{ col.onSort }}" style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D;background:none;border:0;padding:0;margin:0;font-family:inherit;line-height:inherit;cursor:pointer;text-align:left">{{ col.label }}<svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><g opacity="{{ col.upOp }}"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path></g><g opacity="{{ col.downOp }}"><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></g></svg></button>
                         <span style="display:block;font-weight:400;font-size:14px;color:#545454;margin-top:8px;line-height:20px">{{ col.sub }}</span>
                       </th>
                     </sc-for>
@@ -622,8 +622,8 @@
                 <thead>
                   <tr>
                     <sc-for list="{{ allCols }}" as="col" hint-placeholder-count="8">
-                      <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap">
-                        <span style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D">{{ col.label }}<svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></svg></span>
+                      <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap" aria-sort="{{ col.ariaSort }}">
+                        <button type="button" onClick="{{ col.onSort }}" style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D;background:none;border:0;padding:0;margin:0;font-family:inherit;line-height:inherit;cursor:pointer;text-align:left">{{ col.label }}<svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><g opacity="{{ col.upOp }}"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path></g><g opacity="{{ col.downOp }}"><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></g></svg></button>
                         <span style="display:block;font-weight:400;font-size:14px;color:#545454;margin-top:8px;line-height:20px">{{ col.sub }}</span>
                       </th>
                     </sc-for>
@@ -810,10 +810,10 @@
               <thead>
                 <tr>
                   <sc-for list="{{ classReadingCols }}" as="col" hint-placeholder-count="9">
-                    <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap">
-                      <span style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D">{{ col.label }}
-                        <svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></svg>
-                      </span>
+                    <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap" aria-sort="{{ col.ariaSort }}">
+                      <button type="button" onClick="{{ col.onSort }}" style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D;background:none;border:0;padding:0;margin:0;font-family:inherit;line-height:inherit;cursor:pointer;text-align:left">{{ col.label }}
+                        <svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><g opacity="{{ col.upOp }}"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path></g><g opacity="{{ col.downOp }}"><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></g></svg>
+                      </button>
                       <span style="display:block;font-weight:400;font-size:14px;color:#545454;margin-top:8px;line-height:20px">{{ col.sub }}</span>
                     </th>
                   </sc-for>
@@ -869,15 +869,15 @@
             <table style="width:100%;border-collapse:collapse;font-size:14px;min-width:1400px">
               <thead>
                 <tr>
-                  <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap;width:200px">
-                    <span style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px">{{ skillFirstCol }}
-                      <svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></svg>
-                    </span>
+                  <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap;width:200px" aria-sort="{{ hdrSkillFirst.ariaSort }}">
+                    <button type="button" onClick="{{ hdrSkillFirst.onSort }}" style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D;background:none;border:0;padding:0;margin:0;font-family:inherit;line-height:inherit;cursor:pointer;text-align:left">{{ skillFirstCol }}
+                      <svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><g opacity="{{ hdrSkillFirst.upOp }}"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path></g><g opacity="{{ hdrSkillFirst.downOp }}"><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></g></svg>
+                    </button>
                   </th>
                   <sc-for list="{{ skills }}" as="s" hint-placeholder-count="6">
-                    <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;border-left:1px solid #EFEFEF">
-                      <span style="display:flex;align-items:flex-start;gap:8px;font-weight:700;font-size:16px;line-height:22px;min-width:150px">{{ s }}
-                        <span onClick="{{ stopTip }}" style="display:inline-flex;flex-shrink:0"><x-import component-from-global-scope="NewselaAngelou.Toggletip" trigger-theme="light" label="About {{ s }}" color="dark" arrow="right" width="{{ tipW }}" auto-focus="{{ false }}" hint-size="24px,24px"><span style="display:block">Percent of quiz questions on {{ s }} answered correctly.</span></x-import></span>
+                    <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;border-left:1px solid #EFEFEF" aria-sort="{{ s.ariaSort }}">
+                      <span style="display:flex;align-items:flex-start;gap:8px;font-weight:700;font-size:16px;line-height:22px;min-width:150px"><button type="button" onClick="{{ s.onSort }}" style="display:inline-flex;align-items:flex-start;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D;background:none;border:0;padding:0;margin:0;font-family:inherit;line-height:inherit;cursor:pointer;text-align:left">{{ s.label }}<svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:4px"><g opacity="{{ s.upOp }}"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path></g><g opacity="{{ s.downOp }}"><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></g></svg></button>
+                        <span onClick="{{ stopTip }}" style="display:inline-flex;flex-shrink:0"><x-import component-from-global-scope="NewselaAngelou.Toggletip" trigger-theme="light" label="About {{ s.label }}" color="dark" arrow="right" width="{{ tipW }}" auto-focus="{{ false }}" hint-size="24px,24px"><span style="display:block">Percent of quiz questions on {{ s.label }} answered correctly.</span></x-import></span>
                       </span>
                     </th>
                   </sc-for>
@@ -932,8 +932,8 @@
                 <thead>
                   <tr>
                     <sc-for list="{{ adminCols }}" as="col" hint-placeholder-count="6">
-                      <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap">
-                        <span style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D">{{ col.label }}<svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></svg></span>
+                      <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap" aria-sort="{{ col.ariaSort }}">
+                        <button type="button" onClick="{{ col.onSort }}" style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D;background:none;border:0;padding:0;margin:0;font-family:inherit;line-height:inherit;cursor:pointer;text-align:left">{{ col.label }}<svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><g opacity="{{ col.upOp }}"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path></g><g opacity="{{ col.downOp }}"><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></g></svg></button>
                         <span style="display:block;font-weight:400;font-size:14px;color:#545454;margin-top:8px;line-height:20px">{{ col.sub }}</span>
                       </th>
                     </sc-for>
@@ -1014,8 +1014,8 @@
                 <thead>
                   <tr>
                     <sc-for list="{{ readingCols }}" as="col" hint-placeholder-count="8">
-                      <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap">
-                        <span style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D">{{ col.label }}<svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></svg></span>
+                      <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap" aria-sort="{{ col.ariaSort }}">
+                        <button type="button" onClick="{{ col.onSort }}" style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D;background:none;border:0;padding:0;margin:0;font-family:inherit;line-height:inherit;cursor:pointer;text-align:left">{{ col.label }}<svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><g opacity="{{ col.upOp }}"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path></g><g opacity="{{ col.downOp }}"><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></g></svg></button>
                         <span style="display:block;font-weight:400;font-size:14px;color:#545454;margin-top:8px;line-height:20px">{{ col.sub }}</span>
                       </th>
                     </sc-for>
@@ -1169,10 +1169,10 @@
               <thead>
                 <tr>
                   <sc-for list="{{ stemCols }}" as="col" hint-placeholder-count="9">
-                    <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap">
-                      <span style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D">{{ col.label }}
-                        <svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></svg>
-                      </span>
+                    <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap" aria-sort="{{ col.ariaSort }}">
+                      <button type="button" onClick="{{ col.onSort }}" style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D;background:none;border:0;padding:0;margin:0;font-family:inherit;line-height:inherit;cursor:pointer;text-align:left">{{ col.label }}
+                        <svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><g opacity="{{ col.upOp }}"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path></g><g opacity="{{ col.downOp }}"><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></g></svg>
+                      </button>
                       <span style="display:block;font-weight:400;font-size:14px;color:#545454;margin-top:8px;line-height:20px">{{ col.sub }}</span>
                     </th>
                   </sc-for>
@@ -1221,8 +1221,8 @@
                 <thead>
                   <tr>
                     <sc-for list="{{ adminCols }}" as="col" hint-placeholder-count="6">
-                      <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap">
-                        <span style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D">{{ col.label }}<svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></svg></span>
+                      <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap" aria-sort="{{ col.ariaSort }}">
+                        <button type="button" onClick="{{ col.onSort }}" style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D;background:none;border:0;padding:0;margin:0;font-family:inherit;line-height:inherit;cursor:pointer;text-align:left">{{ col.label }}<svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><g opacity="{{ col.upOp }}"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path></g><g opacity="{{ col.downOp }}"><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></g></svg></button>
                         <span style="display:block;font-weight:400;font-size:14px;color:#545454;margin-top:8px;line-height:20px">{{ col.sub }}</span>
                       </th>
                     </sc-for>
@@ -1292,8 +1292,8 @@
                 <thead>
                   <tr>
                     <sc-for list="{{ stemCols }}" as="col" hint-placeholder-count="8">
-                      <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap">
-                        <span style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D">{{ col.label }}<svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></svg></span>
+                      <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap" aria-sort="{{ col.ariaSort }}">
+                        <button type="button" onClick="{{ col.onSort }}" style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D;background:none;border:0;padding:0;margin:0;font-family:inherit;line-height:inherit;cursor:pointer;text-align:left">{{ col.label }}<svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><g opacity="{{ col.upOp }}"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path></g><g opacity="{{ col.downOp }}"><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></g></svg></button>
                         <span style="display:block;font-weight:400;font-size:14px;color:#545454;margin-top:8px;line-height:20px">{{ col.sub }}</span>
                       </th>
                     </sc-for>
@@ -1417,8 +1417,8 @@
               <thead>
                 <tr>
                   <sc-for list="{{ socialCols }}" as="col" hint-placeholder-count="8">
-                    <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap">
-                      <span style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D">{{ col.label }}<svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></svg></span>
+                    <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap" aria-sort="{{ col.ariaSort }}">
+                      <button type="button" onClick="{{ col.onSort }}" style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D;background:none;border:0;padding:0;margin:0;font-family:inherit;line-height:inherit;cursor:pointer;text-align:left">{{ col.label }}<svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><g opacity="{{ col.upOp }}"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path></g><g opacity="{{ col.downOp }}"><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></g></svg></button>
                       <span style="display:block;font-weight:400;font-size:14px;color:#545454;margin-top:8px;line-height:20px">{{ col.sub }}</span>
                     </th>
                   </sc-for>
@@ -1467,8 +1467,8 @@
                 <thead>
                   <tr>
                     <sc-for list="{{ adminCols }}" as="col" hint-placeholder-count="6">
-                      <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap">
-                        <span style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D">{{ col.label }}<svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></svg></span>
+                      <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap" aria-sort="{{ col.ariaSort }}">
+                        <button type="button" onClick="{{ col.onSort }}" style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D;background:none;border:0;padding:0;margin:0;font-family:inherit;line-height:inherit;cursor:pointer;text-align:left">{{ col.label }}<svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><g opacity="{{ col.upOp }}"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path></g><g opacity="{{ col.downOp }}"><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></g></svg></button>
                         <span style="display:block;font-weight:400;font-size:14px;color:#545454;margin-top:8px;line-height:20px">{{ col.sub }}</span>
                       </th>
                     </sc-for>
@@ -1538,8 +1538,8 @@
                 <thead>
                   <tr>
                     <sc-for list="{{ socialCols }}" as="col" hint-placeholder-count="8">
-                      <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap">
-                        <span style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D">{{ col.label }}<svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></svg></span>
+                      <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap" aria-sort="{{ col.ariaSort }}">
+                        <button type="button" onClick="{{ col.onSort }}" style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D;background:none;border:0;padding:0;margin:0;font-family:inherit;line-height:inherit;cursor:pointer;text-align:left">{{ col.label }}<svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><g opacity="{{ col.upOp }}"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path></g><g opacity="{{ col.downOp }}"><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></g></svg></button>
                         <span style="display:block;font-weight:400;font-size:14px;color:#545454;margin-top:8px;line-height:20px">{{ col.sub }}</span>
                       </th>
                     </sc-for>
@@ -1648,8 +1648,8 @@
               <thead>
                 <tr>
                   <sc-for list="{{ writingCols }}" as="col" hint-placeholder-count="7">
-                    <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap">
-                      <span style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D">{{ col.label }}<svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></svg></span>
+                    <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap" aria-sort="{{ col.ariaSort }}">
+                      <button type="button" onClick="{{ col.onSort }}" style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D;background:none;border:0;padding:0;margin:0;font-family:inherit;line-height:inherit;cursor:pointer;text-align:left">{{ col.label }}<svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><g opacity="{{ col.upOp }}"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path></g><g opacity="{{ col.downOp }}"><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></g></svg></button>
                       <span style="display:block;font-weight:400;font-size:14px;color:#545454;margin-top:8px;line-height:20px">{{ col.sub }}</span>
                     </th>
                   </sc-for>
@@ -1741,8 +1741,8 @@
                 <thead>
                   <tr>
                     <sc-for list="{{ adminCols }}" as="col" hint-placeholder-count="6">
-                      <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap">
-                        <span style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D">{{ col.label }}<svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></svg></span>
+                      <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap" aria-sort="{{ col.ariaSort }}">
+                        <button type="button" onClick="{{ col.onSort }}" style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D;background:none;border:0;padding:0;margin:0;font-family:inherit;line-height:inherit;cursor:pointer;text-align:left">{{ col.label }}<svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><g opacity="{{ col.upOp }}"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path></g><g opacity="{{ col.downOp }}"><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></g></svg></button>
                         <span style="display:block;font-weight:400;font-size:14px;color:#545454;margin-top:8px;line-height:20px">{{ col.sub }}</span>
                       </th>
                     </sc-for>
@@ -1897,16 +1897,16 @@
               </button>
             </sc-for>
           </div>
-          <p style="margin:0 0 8px;font-size:14px;line-height:20px;color:#545454">{{ classCountLabel }}</p>
+          <p style="margin:0 0 8px;font-size:14px;line-height:20px;color:#545454">{{ stuAllCountLabel }}</p>
           <div style="border:1px solid #DDDDDD;background:#fff;overflow-x:auto">
             <table style="width:100%;border-collapse:collapse;font-size:14px;min-width:1000px">
               <thead>
                 <tr>
                   <sc-for list="{{ stuAllCols }}" as="col" hint-placeholder-count="7">
-                    <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap">
-                      <span style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D">{{ col.label }}
-                        <svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></svg>
-                      </span>
+                    <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap" aria-sort="{{ col.ariaSort }}">
+                      <button type="button" onClick="{{ col.onSort }}" style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D;background:none;border:0;padding:0;margin:0;font-family:inherit;line-height:inherit;cursor:pointer;text-align:left">{{ col.label }}
+                        <svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><g opacity="{{ col.upOp }}"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path></g><g opacity="{{ col.downOp }}"><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></g></svg>
+                      </button>
                       <span style="display:block;font-weight:400;font-size:14px;color:#545454;margin-top:8px;line-height:20px">{{ col.sub }}</span>
                     </th>
                   </sc-for>
@@ -1932,14 +1932,14 @@
             <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;padding:12px 16px;border-top:1px solid #DDDDDD;font-size:14px">
               <div style="display:flex;align-items:center;gap:12px">
                 <span style="white-space:nowrap">Rows per page</span>
-                <dc-import name="PopoutSelect" value="{{ cPageSize }}" options="{{ pageSizeOptions }}" on-change="{{ onCPageSize }}" height="36" font-size="14" hint-size="80px,36px" style="width:80px"></dc-import>
+                <dc-import name="PopoutSelect" value="{{ suPageSize }}" options="{{ pageSizeOptions }}" on-change="{{ onSUPageSize }}" height="36" font-size="14" hint-size="80px,36px" style="width:80px"></dc-import>
               </div>
               <div style="display:flex;align-items:center;gap:8px;color:#545454">
-                <span style="margin-right:8px;white-space:nowrap"><span style="color:#1D1D1D">{{ cRange }}</span> of {{ cTotal }}</span>
-                <x-import component-from-global-scope="NewselaAngelouDesignSystem_52cccf.Button" variant="ghost" size="md" icon-position="only" icon="{{ icFirst }}" aria-label="First page" disabled="{{ cAtStart }}" on-click="{{ cFirst }}" hint-size="32px,32px"></x-import>
-                <x-import component-from-global-scope="NewselaAngelouDesignSystem_52cccf.Button" variant="ghost" size="md" icon-position="only" icon="{{ icPrev }}" aria-label="Previous page" disabled="{{ cAtStart }}" on-click="{{ cPrev }}" hint-size="32px,32px"></x-import>
-                <x-import component-from-global-scope="NewselaAngelouDesignSystem_52cccf.Button" variant="ghost" size="md" icon-position="only" icon="{{ icNext }}" aria-label="Next page" disabled="{{ cAtEnd }}" on-click="{{ cNext }}" hint-size="32px,32px"></x-import>
-                <x-import component-from-global-scope="NewselaAngelouDesignSystem_52cccf.Button" variant="ghost" size="md" icon-position="only" icon="{{ icLast }}" aria-label="Last page" disabled="{{ cAtEnd }}" on-click="{{ cLast }}" hint-size="32px,32px"></x-import>
+                <span style="margin-right:8px;white-space:nowrap"><span style="color:#1D1D1D">{{ suRange }}</span> of {{ suTotal }}</span>
+                <x-import component-from-global-scope="NewselaAngelouDesignSystem_52cccf.Button" variant="ghost" size="md" icon-position="only" icon="{{ icFirst }}" aria-label="First page" disabled="{{ suAtStart }}" on-click="{{ suFirst }}" hint-size="32px,32px"></x-import>
+                <x-import component-from-global-scope="NewselaAngelouDesignSystem_52cccf.Button" variant="ghost" size="md" icon-position="only" icon="{{ icPrev }}" aria-label="Previous page" disabled="{{ suAtStart }}" on-click="{{ suPrev }}" hint-size="32px,32px"></x-import>
+                <x-import component-from-global-scope="NewselaAngelouDesignSystem_52cccf.Button" variant="ghost" size="md" icon-position="only" icon="{{ icNext }}" aria-label="Next page" disabled="{{ suAtEnd }}" on-click="{{ suNext }}" hint-size="32px,32px"></x-import>
+                <x-import component-from-global-scope="NewselaAngelouDesignSystem_52cccf.Button" variant="ghost" size="md" icon-position="only" icon="{{ icLast }}" aria-label="Last page" disabled="{{ suAtEnd }}" on-click="{{ suLast }}" hint-size="32px,32px"></x-import>
               </div>
             </div>
           </div>
@@ -1969,16 +1969,16 @@
             <table style="width:100%;border-collapse:collapse;font-size:14px;min-width:1100px">
               <thead>
                 <tr>
-                  <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;width:320px">
-                    <span style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px">Content
-                      <svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></svg>
-                    </span>
+                  <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;width:320px" aria-sort="{{ contentColsFirst.ariaSort }}">
+                    <button type="button" onClick="{{ contentColsFirst.onSort }}" style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D;background:none;border:0;padding:0;margin:0;font-family:inherit;line-height:inherit;cursor:pointer;text-align:left">Content
+                      <svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><g opacity="{{ contentColsFirst.upOp }}"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path></g><g opacity="{{ contentColsFirst.downOp }}"><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></g></svg>
+                    </button>
                   </th>
                   <sc-for list="{{ contentCols }}" as="col" hint-placeholder-count="8">
-                    <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap">
-                      <span style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px">{{ col.label }}
-                        <svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></svg>
-                      </span>
+                    <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap" aria-sort="{{ col.ariaSort }}">
+                      <button type="button" onClick="{{ col.onSort }}" style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D;background:none;border:0;padding:0;margin:0;font-family:inherit;line-height:inherit;cursor:pointer;text-align:left">{{ col.label }}
+                        <svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><g opacity="{{ col.upOp }}"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path></g><g opacity="{{ col.downOp }}"><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></g></svg>
+                      </button>
                       <span style="display:block;font-weight:400;font-size:14px;color:#545454;margin-top:8px;line-height:20px">{{ col.sub }}</span>
                     </th>
                   </sc-for>
@@ -2139,16 +2139,16 @@
             <table style="width:100%;border-collapse:collapse;font-size:14px;min-width:1300px">
               <thead>
                 <tr>
-                  <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;width:320px">
-                    <span style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px">Content
-                      <svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></svg>
-                    </span>
+                  <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;width:320px" aria-sort="{{ readingContentColsFirst.ariaSort }}">
+                    <button type="button" onClick="{{ readingContentColsFirst.onSort }}" style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D;background:none;border:0;padding:0;margin:0;font-family:inherit;line-height:inherit;cursor:pointer;text-align:left">Content
+                      <svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><g opacity="{{ readingContentColsFirst.upOp }}"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path></g><g opacity="{{ readingContentColsFirst.downOp }}"><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></g></svg>
+                    </button>
                   </th>
                   <sc-for list="{{ readingContentCols }}" as="col" hint-placeholder-count="9">
-                    <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap">
-                      <span style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px">{{ col.label }}
-                        <svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></svg>
-                      </span>
+                    <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap" aria-sort="{{ col.ariaSort }}">
+                      <button type="button" onClick="{{ col.onSort }}" style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D;background:none;border:0;padding:0;margin:0;font-family:inherit;line-height:inherit;cursor:pointer;text-align:left">{{ col.label }}
+                        <svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><g opacity="{{ col.upOp }}"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path></g><g opacity="{{ col.downOp }}"><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></g></svg>
+                      </button>
                       <span style="display:block;font-weight:400;font-size:14px;color:#545454;margin-top:8px;line-height:20px">{{ col.sub }}</span>
                     </th>
                   </sc-for>
@@ -2343,16 +2343,16 @@
             <table style="width:100%;border-collapse:collapse;font-size:14px;min-width:900px">
               <thead>
                 <tr>
-                  <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;width:360px">
-                    <span style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px">Content
-                      <svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></svg>
-                    </span>
+                  <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;width:360px" aria-sort="{{ stemContentColsFirst.ariaSort }}">
+                    <button type="button" onClick="{{ stemContentColsFirst.onSort }}" style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D;background:none;border:0;padding:0;margin:0;font-family:inherit;line-height:inherit;cursor:pointer;text-align:left">Content
+                      <svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><g opacity="{{ stemContentColsFirst.upOp }}"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path></g><g opacity="{{ stemContentColsFirst.downOp }}"><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></g></svg>
+                    </button>
                   </th>
                   <sc-for list="{{ stemContentCols }}" as="col" hint-placeholder-count="4">
-                    <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap">
-                      <span style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px">{{ col.label }}
-                        <svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></svg>
-                      </span>
+                    <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap" aria-sort="{{ col.ariaSort }}">
+                      <button type="button" onClick="{{ col.onSort }}" style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D;background:none;border:0;padding:0;margin:0;font-family:inherit;line-height:inherit;cursor:pointer;text-align:left">{{ col.label }}
+                        <svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><g opacity="{{ col.upOp }}"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path></g><g opacity="{{ col.downOp }}"><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></g></svg>
+                      </button>
                       <span style="display:block;font-weight:400;font-size:14px;color:#545454;margin-top:8px;line-height:20px">{{ col.sub }}</span>
                     </th>
                   </sc-for>
@@ -2475,12 +2475,12 @@
             <table style="width:100%;border-collapse:collapse;font-size:14px;min-width:900px">
               <thead>
                 <tr>
-                  <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;width:360px">
-                    <span style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px">Content<svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></svg></span>
+                  <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;width:360px" aria-sort="{{ ssContentColsFirst.ariaSort }}">
+                    <button type="button" onClick="{{ ssContentColsFirst.onSort }}" style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D;background:none;border:0;padding:0;margin:0;font-family:inherit;line-height:inherit;cursor:pointer;text-align:left">Content<svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><g opacity="{{ ssContentColsFirst.upOp }}"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path></g><g opacity="{{ ssContentColsFirst.downOp }}"><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></g></svg></button>
                   </th>
                   <sc-for list="{{ ssContentCols }}" as="col" hint-placeholder-count="4">
-                    <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap">
-                      <span style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px">{{ col.label }}<svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></svg></span>
+                    <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap" aria-sort="{{ col.ariaSort }}">
+                      <button type="button" onClick="{{ col.onSort }}" style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D;background:none;border:0;padding:0;margin:0;font-family:inherit;line-height:inherit;cursor:pointer;text-align:left">{{ col.label }}<svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><g opacity="{{ col.upOp }}"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path></g><g opacity="{{ col.downOp }}"><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></g></svg></button>
                       <span style="display:block;font-weight:400;font-size:14px;color:#545454;margin-top:8px;line-height:20px">{{ col.sub }}</span>
                     </th>
                   </sc-for>
@@ -2587,12 +2587,12 @@
             <table style="width:100%;border-collapse:collapse;font-size:14px;min-width:1000px">
               <thead>
                 <tr>
-                  <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;width:320px">
-                    <span style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px">Assignment<svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></svg></span>
+                  <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;width:320px" aria-sort="{{ submissionColsFirst.ariaSort }}">
+                    <button type="button" onClick="{{ submissionColsFirst.onSort }}" style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D;background:none;border:0;padding:0;margin:0;font-family:inherit;line-height:inherit;cursor:pointer;text-align:left">Assignment<svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><g opacity="{{ submissionColsFirst.upOp }}"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path></g><g opacity="{{ submissionColsFirst.downOp }}"><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></g></svg></button>
                   </th>
                   <sc-for list="{{ submissionCols }}" as="col" hint-placeholder-count="5">
-                    <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap">
-                      <span style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px">{{ col.label }}<svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></svg></span>
+                    <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap" aria-sort="{{ col.ariaSort }}">
+                      <button type="button" onClick="{{ col.onSort }}" style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D;background:none;border:0;padding:0;margin:0;font-family:inherit;line-height:inherit;cursor:pointer;text-align:left">{{ col.label }}<svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><g opacity="{{ col.upOp }}"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path></g><g opacity="{{ col.downOp }}"><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></g></svg></button>
                       <span style="display:block;font-weight:400;font-size:14px;color:#545454;margin-top:8px;line-height:20px">{{ col.sub }}</span>
                     </th>
                   </sc-for>
@@ -2836,8 +2836,8 @@
               <thead>
                 <tr>
                   <sc-for list="{{ teacherCols }}" as="col" hint-placeholder-count="7">
-                    <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top">
-                      <span style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D">{{ col.label }}<svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></svg></span>
+                    <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top" aria-sort="{{ col.ariaSort }}">
+                      <button type="button" onClick="{{ col.onSort }}" style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D;background:none;border:0;padding:0;margin:0;font-family:inherit;line-height:inherit;cursor:pointer;text-align:left">{{ col.label }}<svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><g opacity="{{ col.upOp }}"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path></g><g opacity="{{ col.downOp }}"><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></g></svg></button>
                       <span style="display:block;font-weight:400;font-size:14px;color:#545454;margin-top:8px;line-height:20px;max-width:130px">{{ col.sub }}</span>
                     </th>
                   </sc-for>
@@ -2903,8 +2903,8 @@
                 <thead>
                   <tr>
                     <sc-for list="{{ writingCols }}" as="col" hint-placeholder-count="8">
-                      <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap">
-                        <span style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D">{{ col.label }}<svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></svg></span>
+                      <th style="text-align:left;padding:16px;border-bottom:1px solid #DDDDDD;vertical-align:top;white-space:nowrap" aria-sort="{{ col.ariaSort }}">
+                        <button type="button" onClick="{{ col.onSort }}" style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:#1D1D1D;background:none;border:0;padding:0;margin:0;font-family:inherit;line-height:inherit;cursor:pointer;text-align:left">{{ col.label }}<svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#767676" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><g opacity="{{ col.upOp }}"><path d="M5 1.5L8 5"></path><path d="M5 1.5L2 5"></path></g><g opacity="{{ col.downOp }}"><path d="M5 12.5L8 9"></path><path d="M5 12.5L2 9"></path></g></svg></button>
                         <span style="display:block;font-weight:400;font-size:14px;color:#545454;margin-top:8px;line-height:20px">{{ col.sub }}</span>
                       </th>
                     </sc-for>
@@ -3241,7 +3241,7 @@ class Component extends DCLogic {
     return {
       stopTip: this.stopTip,
       tipW: 300,
-      lastUpdated: 'Updated: 11/6 1:23PM',
+      lastUpdated: 'Updated: 11/6 5:54PM',
       rowsPerPageOptions: ['10', '25'],
       pageSizeOptions: ['10', '25', '50'],
       isElaWip: this.state.tab === 'elawip',
@@ -3449,7 +3449,7 @@ class Component extends DCLogic {
 
   teacherSearchVals() {
     const st = this.state;
-    const all = !this.TEACHERS_BY_SCHOOL[st.adminSchool] || !!st.teachersAll || !!st.adminTeacher;
+    const all = !this.TEACHERS_BY_SCHOOL[st.adminSchool];
     const last = (n) => n.split(' ').slice(-1)[0];
     const list = all
       ? Object.keys(this.TEACHERS_BY_SCHOOL).reduce((a, sc) => a.concat(this.TEACHERS_BY_SCHOOL[sc].map(name => ({ name, school: sc }))), [])
@@ -3463,7 +3463,7 @@ class Component extends DCLogic {
     const found = needle ? sorted.filter(t => t.name.toLowerCase().indexOf(needle) >= 0) : sorted;
     const matches = found.slice(0, LIMIT);
     const teacherHint = found.length > LIMIT ? 'Showing ' + LIMIT + ' of ' + found.length + ' teachers. Type to narrow results.' : '';
-    const apply = (name, school) => { if (typeof document !== 'undefined' && document.activeElement) document.activeElement.blur(); const sc = school || st.adminSchool; const nextSearched = name ? (st.searchedTeachers || []).filter(x => !(x.school === sc && x.name === name)).concat([{ school: sc, name }]) : (st.searchedTeachers || []); try { window.localStorage.setItem('rd-searched-teachers', JSON.stringify(nextSearched)); } catch (e) {} this.setState({ searchedTeachers: nextSearched, teacherQuery: '', teacherFocused: false, adminTeacher: name, adminSchool: name ? sc : 'All schools', classroom: 'All classes', view: 'class', expandedSchool: name ? sc : null, teachersAll: name ? st.teachersAll : true }); };
+    const apply = (name, school) => { if (typeof document !== 'undefined' && document.activeElement) document.activeElement.blur(); const sc = school || st.adminSchool; const nextSearched = name ? (st.searchedTeachers || []).filter(x => !(x.school === sc && x.name === name)).concat([{ school: sc, name }]) : (st.searchedTeachers || []); try { window.localStorage.setItem('rd-searched-teachers', JSON.stringify(nextSearched)); } catch (e) {} this.setState({ searchedTeachers: nextSearched, teacherQuery: '', teacherFocused: false, adminTeacher: name, adminSchool: name ? sc : (st.adminSchool || 'All schools'), classroom: 'All classes', view: 'class', expandedSchool: name ? sc : (this.SCHOOLS.indexOf(st.adminSchool) >= 0 ? st.adminSchool : null), teachersAll: name ? st.teachersAll : true }); };
     const current = st.adminTeacher || 'All teachers';
     const rowStyle = (on) => 'text-align:left;padding:10px 14px;border:0;background:' + (on ? '#E5EFFF' : 'transparent') + ';border-radius:6px;font-size:14px;font-family:inherit;color:#1D1D1D;cursor:pointer;width:100%;font-weight:' + (on ? '700' : '400');
     const allRow = { name: 'All teachers', style: rowStyle(!st.adminTeacher), onPick: (e) => { e.preventDefault(); apply(null); } };
@@ -3825,10 +3825,10 @@ class Component extends DCLogic {
     }));
   }
 
-  schoolRoster() {
-    const st = this.state;
-    const sch = st.adminSchool || '';
-    if (this._rosterKey === sch && this._roster) return this._roster;
+  schoolRoster() { return this.rosterOf(this.state.adminSchool || ''); }
+  rosterOf(sch) {
+    this._rosters = this._rosters || {};
+    if (this._rosters[sch]) return this._rosters[sch];
     const FIRST = ['Aaliyah','Ben','Camila','Darius','Elena','Felix','Grace','Hector','Imani','Jonah','Keira','Liam','Maya','Noah','Olivia','Priya','Quinn','Rafael','Sofia','Theo','Uma','Victor','Willa','Xavier','Yara','Zane','Aiden','Bella','Caleb','Daniela','Eli','Fatima','Gabe','Hana','Isaac','Jada','Kai','Lucia','Mateo','Nora','Omar','Paige','Ruby','Sam','Tessa','Wes'];
     const LAST = ['Adams','Baker','Chen','Diaz','Evans','Foster','Garcia','Hughes','Ito','Jensen','Khan','Lopez','Morales','Nguyen','Okafor','Patel','Quintero','Reyes','Singh','Torres','Usman','Vance','Walsh','Young','Zhang','Abbott','Bryant','Castro','Dunn','Ellis','Flores','Grant','Hale','Ingram','Jordan','Kim','Lambert','Mendez','Nash','Ortiz','Park','Ramos','Shah','Tran','Wells'];
     const h = (s) => { let x = 2166136261; for (let k = 0; k < s.length; k++) { x ^= s.charCodeAt(k); x = Math.imul(x, 16777619); } return x >>> 0; };
@@ -3839,8 +3839,112 @@ class Component extends DCLogic {
       if (!seen.has(nm)) { seen.add(nm); out.push(nm); }
     }
     out.sort((a, b) => a.localeCompare(b));
-    this._rosterKey = sch; this._roster = out;
+    this._rosters[sch] = out;
     return out;
+  }
+  // Every student's school: first school wins on a repeated name; demo students get a hashed school.
+  studentDir() {
+    if (this._stuDir) return this._stuDir;
+    const dir = Object.create(null);
+    this.SCHOOLS.forEach(sc => this.rosterOf(sc).forEach(n => { const d = displayName(n); if (!(d in dir)) dir[d] = sc; }));
+    STUDENTS.forEach(x => { const d = displayName(x.name); if (!(d in dir)) dir[d] = this.SCHOOLS[Math.floor(this.hash('stusch|' + d) * this.SCHOOLS.length)]; });
+    return (this._stuDir = dir);
+  }
+  // 0 = Kindergarten … 12
+  studentGrade(name) {
+    const st = this.state;
+    let sch = null;
+    if (this.curExperience() !== 'Teacher experience') {
+      if (this.SCHOOLS.indexOf(st.adminSchool) >= 0) sch = st.adminSchool;
+      else if (st.adminTeacher) sch = this.teacherSchool(st.adminTeacher);
+      else sch = this.studentDir()[name] || null;
+    }
+    if (!sch || this.SCHOOLS.indexOf(sch) < 0) return this.hash('enrolled|' + name) < 0.5 ? 7 : 8;
+    const bands = this.KIND[this.schoolKind(sch)].bands;
+    const keys = Object.keys(bands);
+    let r = this.hash('band|' + name) * keys.reduce((a, k) => a + bands[k], 0), band = keys[keys.length - 1];
+    for (let i = 0; i < keys.length; i++) { if (r < bands[keys[i]]) { band = keys[i]; break; } r -= bands[keys[i]]; }
+    const R = { es: [0, 5], ms: [6, 8], hs: [9, 12] }[band];
+    return R[0] + Math.floor(this.hash('grade|' + name) * (R[1] - R[0] + 1));
+  }
+  gradeName(g) {
+    if (g === 0) return 'Kindergarten';
+    const suf = (g % 100 >= 11 && g % 100 <= 13) ? 'th' : ({ 1: 'st', 2: 'nd', 3: 'rd' }[g % 10] || 'th');
+    return g + suf + ' Grade';
+  }
+  studentClasses(name, anchor) {
+    const g = this.gradeName(this.studentGrade(name));
+    const n = 2 + Math.floor(this.hash('ncls|' + name) * 3);
+    const extra = ['Social Studies', 'Science', 'ELA Writing'].sort((a, b) => this.hash(name + '|subj|' + a) - this.hash(name + '|subj|' + b));
+    const used = new Set();
+    const list = ['ELA Class'].concat(extra.slice(0, n - 1)).map(sub => {
+      let per = 1 + Math.floor(this.hash(name + '|per|' + sub) * 8);
+      while (used.has(per)) per = per % 8 + 1;
+      used.add(per);
+      return { per, label: sub + ' ' + g + ' P.' + per };
+    }).sort((a, b) => a.per - b.per).map(x => x.label);
+    if (anchor && anchor !== 'All classes' && list.indexOf(anchor) < 0) list[list.length - 1] = anchor;
+    return list;
+  }
+  // Section 5: the All students table list
+  stuAllList() {
+    const st = this.state;
+    if (st.adminTeacher || this.curExperience() === 'Teacher experience') return this.classRoster();
+    if (this.SCHOOLS.indexOf(st.adminSchool) >= 0) return this.rosterOf(st.adminSchool);
+    if (!this._allStu) this._allStu = this.SCHOOLS.reduce((a, sc) => a.concat(this.rosterOf(sc)), []).sort((a, b) => a.localeCompare(b));
+    return this._allStu;
+  }
+  // ---- Table sorting (shared) ----
+  sortKey(v) {
+    const s = v == null ? '' : String(v).trim();
+    if (s === '' || s === '–' || s === '-' || s === 'N/A') return [0, 0];
+    let m = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4}|\d{2})\b/);
+    if (m) { let y = +m[3]; if (y < 100) y += 2000; return [1, y * 10000 + (+m[1]) * 100 + (+m[2])]; }
+    m = s.match(/^(\d[\d,]*(?:\.\d+)?)\s*(?:of|\/)\s*(\d[\d,]*(?:\.\d+)?)/);
+    if (m) { const b = parseFloat(m[2].replace(/,/g, '')); return [1, b ? parseFloat(m[1].replace(/,/g, '')) / b : 0]; }
+    if (/^kindergarten$/i.test(s)) return [1, 0];
+    m = s.match(/^grade\s+(\d+)/i); if (m) return [1, +m[1]];
+    m = s.replace(/,/g, '').match(/^-?\d*\.?\d+/); if (m) return [1, parseFloat(m[0])];
+    return [2, s.toLowerCase()];
+  }
+  cmpKey(a, b) {
+    if (a[0] !== b[0]) return a[0] - b[0];
+    return a[0] === 2 ? a[1].localeCompare(b[1]) : a[1] - b[1];
+  }
+  isSorting(t) { const s = this.state.tSort; return !!s && s.t === t; }
+  sortBy(t, items, valsOf) {
+    const s = this.state.tSort;
+    if (!s || s.t !== t) return items;
+    const dir = s.d === 'desc' ? -1 : 1;
+    return items.map((it, i) => ({ it, i, k: this.sortKey(valsOf(it)[s.c]) }))
+      .sort((a, b) => dir * this.cmpKey(a.k, b.k) || a.i - b.i).map(x => x.it);
+  }
+  zebra(rows) { return rows.map((r, i) => Object.assign(r, { bg: i % 2 === 0 ? '#FAFAFA' : '#FFFFFF' })); }
+  sortHdr(t, c) {
+    const s = this.state.tSort;
+    const d = s && s.t === t && s.c === c ? s.d : null;
+    return {
+      ariaSort: d === 'asc' ? 'ascending' : d === 'desc' ? 'descending' : 'none',
+      upOp: d === 'desc' ? 0.3 : 1, downOp: d === 'asc' ? 0.3 : 1,
+      onSort: (e) => {
+        if (e && e.preventDefault) e.preventDefault();
+        const cur = this.state.tSort;
+        const next = (!cur || cur.t !== t || cur.c !== c) ? { t, c, d: 'asc' } : cur.d === 'asc' ? { t, c, d: 'desc' } : null;
+        this.setState({ tSort: next, cPage: 0, ssPage: 0, aPage: 0, pcPage: 0, psPage: 0, suPage: 0, tPage: 0, skPage: 0 });
+      },
+    };
+  }
+  withSort(v) {
+    const T = { allCols: ['allCols', 0], classAllCols: ['allCols', 0], readingCols: ['readingCols', 0], classReadingCols: ['readingCols', 0], stemCols: ['stemCols', 0], socialCols: ['socialCols', 0], writingCols: ['writingCols', 0], stuAllCols: ['stuAllCols', 0], adminCols: ['adminCols', 0], contentCols: ['contentCols', 1], readingContentCols: ['readingContentCols', 1], stemContentCols: ['stemContentCols', 1], ssContentCols: ['ssContentCols', 1], submissionCols: ['submissionCols', 1], teacherCols: ['teacherCols', 0] };
+    Object.keys(T).forEach(k => {
+      if (!Array.isArray(v[k])) return;
+      const [t, off] = T[k];
+      v[k] = v[k].map((c, i) => Object.assign({}, c, this.sortHdr(t, i + off)));
+      if (off) v[k + 'First'] = this.sortHdr(t, 0);
+    });
+    v.hdrSkillFirst = this.sortHdr('skills', 0);
+    v.skills = SKILLS.map((label, j) => Object.assign({ label }, this.sortHdr('skills', j + 1)));
+    return v;
   }
   schoolRows(mapper) {
     const sch = this.state.adminSchool || '';
@@ -3938,11 +4042,10 @@ class Component extends DCLogic {
       cFirst: go(0), cPrev: go(page - 1), cNext: go(page + 1), cLast: go(pages - 1),
     } };
   }
-  rows(mapper) {
-    const roster = this.classRoster();
-    const p = this.cPager(roster.length);
-    return roster.slice(p.start, p.start + p.size).map((name, j) => {
-      const i = p.start + j;
+  rows(mapper, t, roster0, pagerFn, decorate, valsOf) {
+    const roster = roster0 || this.classRoster();
+    const p = pagerFn ? pagerFn(roster.length) : this.cPager(roster.length);
+    const build = (name, i) => {
       const known = STUDENTS.find(x => x.name === name);
       const s0 = Object.assign({}, known || STUDENTS[i % STUDENTS.length], { name });
       const salt = 'row' + (known ? STUDENTS.indexOf(known) : name);
@@ -3954,18 +4057,27 @@ class Component extends DCLogic {
         active: mins(s0.active, 'a'), vtime: mins(s0.vtime, 'vt'), itime: mins(s0.itime, 'it'),
         score: typeof s0.score === 'string' && /%$/.test(s0.score) ? Math.min(100, this.vary(parseInt(s0.score, 10), salt + 's')) + '%' : s0.score,
       });
-      const i2 = i;
-      return {
+      const row = {
       name: s.name, grade: s.grade, lexile: s.lexile,
       bg: i % 2 === 0 ? '#FAFAFA' : '#FFFFFF',
       cells: mapper(s, i),
       onOpen: (e) => { e.preventDefault(); this.openStudent(s.name); },
       };
-    });
+      if (decorate) decorate(row);
+      return row;
+    };
+    const vals = valsOf || (r => [r.name, r.lexile].concat(r.cells));
+    const out = t && this.isSorting(t)
+      ? this.sortBy(t, roster.map((n, i) => build(n, i)), vals).slice(p.start, p.start + p.size)
+      : roster.slice(p.start, p.start + p.size).map((n, j) => build(n, p.start + j));
+    return this.zebra(out);
   }
 
   openStudent(listName) {
-    this.setState({ view: 'student', stuFromTeacher: !!this.state.adminTeacher, student: displayName(listName), expanded: this.state.classroom === 'All classes' ? this.state.expanded : this.state.classroom });
+    const st = this.state, name = displayName(listName);
+    const patch = { view: 'student', stuFromTeacher: !!st.adminTeacher, student: name, expanded: st.classroom === 'All classes' ? st.expanded : st.classroom, stuClassAnchor: { student: name, classroom: st.classroom } };
+    if (this.curExperience() !== 'Teacher experience' && this.SCHOOLS.indexOf(st.adminSchool) < 0) { const sc = this.studentDir()[name]; if (sc) { patch.adminSchool = sc; patch.expandedSchool = sc; } }
+    this.setState(patch);
     if (typeof window !== 'undefined') window.scrollTo(0, 0);
   }
 
@@ -4017,7 +4129,12 @@ class Component extends DCLogic {
   contentRows() {
     const all = this.allContent();
     const pg = this.genericPager('pc', all.length, (this.state.student || '') + '|' + this.state.tab);
-    return all.slice(pg.start, pg.start + pg.size).map((r, j) => ({ i: pg.start + j, r })).map(({ r, i }) => ({
+    const tb = this.state.tab;
+    const t = tb === 'all' ? 'contentCols' : (tb === 'reading' || tb === 'elawip') ? 'readingContentCols' : tb === 'stem' ? 'stemContentCols' : tb === 'social' ? 'ssContentCols' : null;
+    const F = { contentCols: ['title', 'assignedBy', 'level', 'viewed', 'active', 'quiz', 'write', 'annot', 'power'], readingContentCols: ['title', 'assignedBy', 'skills', 'level', 'viewed', 'active', 'quiz', 'write', 'annot', 'power'], stemContentCols: ['title', 'assignedBy', 'level', 'viewed', 'active'], ssContentCols: ['title', 'assignedBy', 'level', 'viewed', 'active'] };
+    const sorting = t && this.isSorting(t);
+    const src = sorting ? all.map((r, i) => ({ i, r })) : all.slice(pg.start, pg.start + pg.size).map((r, j) => ({ i: pg.start + j, r }));
+    const built = src.map(({ r, i }) => ({
       title: r.title,
       skills: r.skills.length ? r.skills.join('\n') : '–',
       level: r.lexile ? r.lexile : '–',
@@ -4026,9 +4143,11 @@ class Component extends DCLogic {
       viewed: r.viewed, active: r.active, quiz: r.quiz, write: r.write, annot: r.annot, power: r.power,
       bg: i % 2 === 0 ? '#FAFAFA' : '#FFFFFF',
     }));
+    return this.zebra(sorting ? this.sortBy(t, built, row => F[t].map(f => row[f])).slice(pg.start, pg.start + pg.size) : built);
   }
 
-  renderVals() {
+  renderVals() { return this.withSort(this.renderVals0()); }
+  renderVals0() {
     const st = this.state;
     if (!this.conceptBarRef) this.conceptBarRef = el => { this._barEl = el; };
     if (!this.filterRowRef) this.filterRowRef = el => { this._filterEl = el; };
@@ -4280,19 +4399,19 @@ class Component extends DCLogic {
       showSchoolStudentsWriting: isAdmin && isClass && lvl === 'school' && tab === 'writing',
       ...(() => {
         if (!(isAdmin && isClass && lvl === 'school')) return {};
-        const cut = (rows) => { const p = this.ssPager(rows.length); return rows.slice(p.start, p.start + p.size); };
+        const cut = (rows, t) => { const p = this.ssPager(rows.length); return this.zebra(this.sortBy(t, rows, r => [r.name, r.lexile].concat(r.cells)).slice(p.start, p.start + p.size)); };
         const pg = this.ssPager(this.schoolRoster().length).vals;
         const n = this.schoolRoster().length;
         return Object.assign({}, pg, this.stuSearchVals(), {
           ssCountLabel: n.toLocaleString() + ' result' + (n === 1 ? '' : 's'),
-          ssAllRows: cut(this.schoolRows(s => [s.views, s.active, s.vviews, s.vtime, s.quizzes, s.score])),
-          ssReadingRows: cut(this.schoolRows(s => [s.views, s.active, s.quizzes, s.score, s.write, s.annot])),
-          ssStemRows: cut(this.schoolRows(s => [s.last, s.views, s.active, s.vviews, s.vtime, s.inter, s.itime])),
-          ssSocialRows: cut(this.schoolRows(s => [s.last, s.views, s.active, s.vviews, s.vtime, s.quizzes])),
-          ssWritingRows: cut(this.schoolRows((s, i) => WRITING_CELLS[i % WRITING_CELLS.length])),
+          ssAllRows: cut(this.schoolRows(s => [s.views, s.active, s.vviews, s.vtime, s.quizzes, s.score]), 'allCols'),
+          ssReadingRows: cut(this.schoolRows(s => [s.views, s.active, s.quizzes, s.score, s.write, s.annot]), 'readingCols'),
+          ssStemRows: cut(this.schoolRows(s => [s.last, s.views, s.active, s.vviews, s.vtime, s.inter, s.itime]), 'stemCols'),
+          ssSocialRows: cut(this.schoolRows(s => [s.last, s.views, s.active, s.vviews, s.vtime, s.quizzes]), 'socialCols'),
+          ssWritingRows: cut(this.schoolRows((s, i) => WRITING_CELLS[i % WRITING_CELLS.length]), 'writingCols'),
         });
       })(),
-      adminTableTitle: at.title, adminCols: at.cols, adminRows: at.rows.slice(this.aPager(at.rows.length).start, this.aPager(at.rows.length).start + this.aPager(at.rows.length).size),
+      adminTableTitle: at.title, adminCols: at.cols, adminRows: this.zebra(this.sortBy('adminCols', at.rows, r => [r.name].concat(r.cells)).slice(this.aPager(at.rows.length).start, this.aPager(at.rows.length).start + this.aPager(at.rows.length).size)),
       ...this.aPager(at.rows.length).vals,
       onAllSchools: (e) => { e.preventDefault(); this.setState({ view: 'class', adminSchool: 'All schools', adminTeacher: null, classroom: 'All classes', expandedSchool: null }); },
       allSchoolsStyle: this.navStyle(isClass && st.adminSchool === 'All schools', 14),
@@ -4474,7 +4593,7 @@ class Component extends DCLogic {
         { label: 'Video time', sub: 'Average time on video' },
         { label: 'Quizzes', sub: 'Quizzes taken' },
       ],
-      socialRows: this.rows(s => [s.last, s.views, s.active, s.vviews, s.vtime, s.quizzes]),
+      socialRows: this.rows(s => [s.last, s.views, s.active, s.vviews, s.vtime, s.quizzes], 'socialCols'),
       ssContentCols: [
         { label: 'Assigned by', sub: 'Teacher who assigned it' },
         { label: 'Text level', sub: 'Lexile level of text viewed' },
@@ -4491,7 +4610,7 @@ class Component extends DCLogic {
         { label: 'Word count', sub: 'Average per submission' },
         { label: 'AI feedback requests', sub: 'AI Glows & Grows' },
       ],
-      writingRows: this.rows((s, i) => WRITING_CELLS[i % WRITING_CELLS.length]),
+      writingRows: this.rows((s, i) => WRITING_CELLS[i % WRITING_CELLS.length], 'writingCols'),
       submissionCols: [
         { label: 'Genre', sub: 'Assignment genre' },
         { label: 'Rubric', sub: 'Rubric applied' },
@@ -4501,7 +4620,7 @@ class Component extends DCLogic {
         { label: 'AI feedback', sub: 'AI Glows & Grows' },
       ],
       ...this.genericPager('pc', this.allContent().length, (st.student || '') + '|' + st.tab).vals,
-      ...(() => { const all = this.allSubmissions(SUBMISSIONS); const pg = this.genericPager('ps', all.length, (st.student || '') + '|' + st.tab); return Object.assign({}, pg.vals, { submissionRows: all.slice(pg.start, pg.start + pg.size).map((r, j) => ({ title: r[0], cells: r.slice(1), bg: j % 2 === 0 ? '#FAFAFA' : '#FFFFFF' })) }); })(),
+      ...(() => { const all = this.allSubmissions(SUBMISSIONS); const pg = this.genericPager('ps', all.length, (st.student || '') + '|' + st.tab); return Object.assign({}, pg.vals, { submissionRows: this.sortBy('submissionCols', all, r => r).slice(pg.start, pg.start + pg.size).map((r, j) => ({ title: r[0], cells: r.slice(1), bg: j % 2 === 0 ? '#FAFAFA' : '#FFFFFF' })) }); })(),
       writingCriteriaBars: criteria.map(c => {
         const max = c.label === 'Conventions' ? 2 : 4;
         const pct = Math.round((c.score / max) * 100);
@@ -4525,7 +4644,7 @@ class Component extends DCLogic {
         { label: 'AI feedback requests', sub: 'AI Glows & Grows' },
       ],
       ...this.teacherPageVals(TEACHERS.length),
-      teacherRows: TEACHERS.slice(this.tPageStart(TEACHERS.length), this.tPageStart(TEACHERS.length) + this.tSize()).map((t, i) => {
+      teacherRows: this.zebra(this.sortBy('teacherCols', TEACHERS.map((t, i) => {
         const jitter = (v, span, key, min) => Math.max(min, v + Math.round(this.hash(this.ctxKey() + '|' + t[0] + key) * span * 2 - span));
         const assigned = parseInt(t[2].split('/')[1], 10);
         const created = jitter(parseInt(t[1], 10), 1, 'asg', 1);
@@ -4546,7 +4665,7 @@ class Component extends DCLogic {
           ],
           bg: i % 2 === 0 ? '#FAFAFA' : '#FFFFFF',
         };
-      }),
+      }), r => [r.name].concat(r.cells)).slice(this.tPageStart(TEACHERS.length), this.tPageStart(TEACHERS.length) + this.tSize())),
       studentName: st.student,
       firstName,
       backToClass: (e) => { e.preventDefault(); this.setState({ view: 'class' }); },
@@ -4566,16 +4685,27 @@ class Component extends DCLogic {
       filterOneValue: st.classroom,
       filterOneOptions: isClass
         ? ['All classes', 'ELA Class 8th Grade P.2', 'ELA Class 8th Grade P.3', 'ELA Class 8th Grade P.7', 'ELA Class 8th Grade P.8']
-        : [{ value: 'All classes', label: 'Select classroom' }, (/^ELA Class/.test(st.classroom) ? st.classroom : 'ELA Class 8th Grade P.3'), 'Social Studies 8th Grade P.1', 'Science 8th Grade P.5'],
+        : (st.student && st.student !== 'All students')
+          ? [{ value: 'All classes', label: 'Select classroom' }].concat(this.studentClasses(st.student, st.stuClassAnchor && st.stuClassAnchor.student === st.student ? st.stuClassAnchor.classroom : null))
+          : [{ value: 'All classes', label: 'Select classroom' }, (/^ELA Class/.test(st.classroom) ? st.classroom : 'ELA Class 8th Grade P.3'), 'Social Studies 8th Grade P.1', 'Science 8th Grade P.5'],
       onFilterOne: (e) => this.setState({ classroom: e.target.value }),
       studentPickValue: st.student,
       studentPickOptions: STUDENTS.map(s => displayName(s.name)),
       onStudentPick: (e) => this.setState({ student: e.target.value }),
       ...(() => {
-        const roster = this.schoolRoster().filter(n => !STUDENTS.some(s => s.name === n));
+        const adminExp = this.curExperience() !== 'Teacher experience';
+        const realSch = this.SCHOOLS.indexOf(st.adminSchool) >= 0 ? st.adminSchool : null;
         const last = (n) => n.split(' ').slice(-1)[0];
-        const list = STUDENTS.map(s => s.name).concat(roster).map(n => displayName(n))
-          .filter((n, i, arr) => arr.indexOf(n) === i)
+        let names;
+        if (!adminExp) {
+          const roster = this.schoolRoster().filter(n => !STUDENTS.some(s => s.name === n));
+          names = STUDENTS.map(s => s.name).concat(roster).map(n => displayName(n));
+        } else if (realSch) {
+          const dir = this.studentDir();
+          names = this.rosterOf(realSch).map(n => displayName(n)).concat(STUDENTS.map(s => displayName(s.name)).filter(d => dir[d] === realSch));
+        } else names = Object.keys(this.studentDir());
+        const seenN = new Set();
+        const list = names.filter(n => (seenN.has(n) ? false : (seenN.add(n), true)))
           .sort((x, y) => last(x).localeCompare(last(y)) || x.localeCompare(y));
         const q = st.spkQuery == null ? '' : st.spkQuery;
         const needle = q.trim().toLowerCase();
@@ -4586,7 +4716,13 @@ class Component extends DCLogic {
         const current = isAll ? 'All students' : st.student;
         const showAll = !needle || 'all students'.indexOf(needle) >= 0;
         const rowStyle = (on) => 'text-align:left;padding:10px 14px;border:0;background:' + (on ? '#E5EFFF' : 'transparent') + ';border-radius:6px;font-size:14px;font-family:inherit;color:#1D1D1D;cursor:pointer;width:100%;font-weight:' + (on ? '700' : '400');
-        const pick = (name) => { if (typeof document !== 'undefined' && document.activeElement) document.activeElement.blur(); this.setState({ student: name, spkQuery: '', spkFocused: false, stuFromTeacher: false }); if (typeof window !== 'undefined') window.scrollTo(0, 0); };
+        const pick = (name) => {
+          if (typeof document !== 'undefined' && document.activeElement) document.activeElement.blur();
+          const patch = { student: name, spkQuery: '', spkFocused: false, stuFromTeacher: false, classroom: 'All classes', stuClassAnchor: null };
+          if (adminExp && !realSch && name !== 'All students') { const sc = this.studentDir()[name]; if (sc) Object.assign(patch, { adminSchool: sc, adminTeacher: null, expandedSchool: sc }); }
+          this.setState(patch);
+          if (typeof window !== 'undefined') window.scrollTo(0, 0);
+        };
         const spkHint = found.length > LIMIT ? 'Showing ' + LIMIT + ' of ' + found.length + ' students. Type to narrow results.' : '';
         return {
           spkQuery: st.spkFocused ? q : current,
@@ -4738,7 +4874,7 @@ class Component extends DCLogic {
       ],
       classCountLabel: this.classRoster().length + ' result' + (this.classRoster().length === 1 ? '' : 's'),
       ...this.cPager(this.classRoster().length).vals,
-      allRows: this.rows(s => [s.views, s.active, s.vviews, s.vtime, s.quizzes, s.score, this.cfuCell(s.name)]),
+      allRows: this.rows(s => [s.views, s.active, s.vviews, s.vtime, s.quizzes, s.score, this.cfuCell(s.name)], 'allCols'),
       stuAllCols: [
         { label: 'Student', sub: '' },
         { label: 'Grade', sub: 'Grade enrolled' },
@@ -4748,7 +4884,17 @@ class Component extends DCLogic {
         { label: 'Video views', sub: 'Videos viewed' },
         { label: 'View time', sub: 'Average time on video' },
       ],
-      stuAllRows: this.rows(s => [s.views, s.active, s.vviews, s.vtime]).map(r => Object.assign(r, { actualGrade: 'Grade ' + (this.hash('enrolled|' + r.name) < 0.5 ? 7 : 8) })),
+      ...(() => {
+        const list = this.stuAllList();
+        const key = [st.adminSchool, st.adminTeacher, st.classroom, st.tab, this.curExperience()].join('|');
+        const pg = this.genericPager('su', list.length, key);
+        return Object.assign({}, pg.vals, {
+          stuAllCountLabel: list.length.toLocaleString() + ' result' + (list.length === 1 ? '' : 's'),
+          stuAllRows: this.rows(s => [s.views, s.active, s.vviews, s.vtime], 'stuAllCols', list, () => pg,
+            r => { const g = this.studentGrade(displayName(r.name)); r.gradeNum = g; r.actualGrade = g === 0 ? 'Kindergarten' : 'Grade ' + g; },
+            r => [r.name, r.gradeNum, r.lexile].concat(r.cells)),
+        });
+      })(),
 
       readingCols: [
         { label: 'Student', sub: '' },
@@ -4771,7 +4917,7 @@ class Component extends DCLogic {
         { label: 'Write prompts', sub: 'Average score' },
         { label: 'Annotations', sub: 'Average submitted' },
       ],
-      readingRows: this.rows(s => [s.views, s.active, s.quizzes, s.score, this.cfuCell(s.name), s.write, s.annot]),
+      readingRows: this.rows(s => [s.views, s.active, s.quizzes, s.score, this.cfuCell(s.name), s.write, s.annot], 'readingCols'),
 
       stemCols: [
         { label: 'Student', sub: '' },
@@ -4784,11 +4930,11 @@ class Component extends DCLogic {
         { label: 'Interactives', sub: 'Interactive content viewed' },
         { label: 'Interactive time', sub: 'Average time on interactives' },
       ],
-      stemRows: this.rows(s => [s.last, s.views, s.active, s.vviews, s.vtime, s.inter, s.itime]),
+      stemRows: this.rows(s => [s.last, s.views, s.active, s.vviews, s.vtime, s.inter, s.itime], 'stemCols'),
 
       skills: SKILLS,
       ...(() => {
-        const body = skillRows.slice(2);
+        const body = this.sortBy('skills', skillRows.slice(2), r => [r.name].concat(r.cells.map(c => c.pct)));
         const total = body.length;
         const key = [st.adminSchool, st.adminTeacher, st.classroom, st.gradeLevel].join('|');
         const size = parseInt(st.skPageSize || '10', 10);
@@ -4797,7 +4943,7 @@ class Component extends DCLogic {
         const start = page * size;
         const go = (p) => () => this.setState({ skKey: key, skPage: Math.max(0, Math.min(pages - 1, p)) });
         return {
-          skillRows: [skillRows[0], skillRows[1]].concat(body.slice(start, start + size)),
+          skillRows: [skillRows[0], skillRows[1]].concat(body.slice(start, start + size).map((r, k) => Object.assign(r, { bg: k % 2 === 0 ? '#FFFFFF' : '#FAFAFA' }))),
           skPageSize: String(size),
           onSkPageSize: (e) => this.setState({ skPageSize: e.target.value, skPage: 0, skKey: key }),
           skRange: total ? (start + 1) + ' - ' + Math.min(total, start + size) : '0',
