@@ -427,6 +427,14 @@
         <section style="margin-bottom:48px">
           <h2 style="font-weight:700;font-size:24px;line-height:32px;margin:0 0 4px">{{ insightsTitle }}</h2>
           <p style="font-size:16px;line-height:24px;color:#545454;margin:0 0 16px;max-width:820px">{{ districtHeadline }}</p>
+          <div style="display:flex;flex-direction:column;gap:6px;margin:0 0 16px">
+            <span id="insights-grade-label" style="font-size:12px;font-weight:700;color:#1D1D1D">Filter by grade</span>
+            <div role="group" aria-labelledby="insights-grade-label" style="display:flex;flex-wrap:wrap;gap:6px">
+              <sc-for list="{{ insightGrades }}" as="g" hint-placeholder-count="13">
+                <button type="button" aria-pressed="{{ g.pressed }}" aria-label="{{ g.aria }}" onClick="{{ g.onClick }}" style="{{ g.style }}" style-hover="border-color:#333333">{{ g.id }}</button>
+              </sc-for>
+            </div>
+          </div>
           <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:stretch">
 
             <div style="background:#E5EFFF;border:0;border-radius:16px;padding:12px;box-sizing:border-box;display:flex;flex-direction:column;flex:1 1 210px;min-width:196px">
@@ -449,29 +457,16 @@
 
             <div style="background:#E5EFFF;border:0;border-radius:16px;padding:12px;box-sizing:border-box;display:flex;flex-direction:column;flex:1 1 210px;min-width:196px">
               <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;padding:4px 6px 10px">
-                <span style="display:flex;align-items:center;gap:8px;font-weight:700;font-size:16px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="flex-shrink:0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"></path><path d="M15 7h6v6"></path></svg>Lexile over time</span><x-import component-from-global-scope="NewselaAngelou.Toggletip" trigger="{{ info16 }}" trigger-theme="light" label="About Lexile over time" color="dark" arrow="right" width="{{ tipW }}" auto-focus="{{ false }}" hint-size="16px,16px"><span style="display:block">Average Lexile level of the texts students read over the selected date range: by month for July to date, by week for the last 90 or 45 days.</span><span style="display:block;margin-top:8px"><strong style="font-weight:700">{{ lexAvgLabel }}:</strong> average for the most recent month</span><span style="display:block;margin-top:8px"><strong style="font-weight:700">Change:</strong> difference from September</span></x-import>
+                <span style="display:flex;align-items:center;gap:8px;font-weight:700;font-size:16px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="flex-shrink:0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"></path><path d="M15 7h6v6"></path></svg>Lexile over time</span><x-import component-from-global-scope="NewselaAngelou.Toggletip" trigger="{{ info16 }}" trigger-theme="light" label="About Lexile over time" color="dark" arrow="right" width="{{ tipW }}" auto-focus="{{ false }}" hint-size="16px,16px"><span style="display:block">Average Lexile level of the texts students read over the selected date range: by month for July to date, by week for the last 90 or 45 days.</span><span style="display:block;margin-top:8px"><strong style="font-weight:700">{{ lexAvgLabel }}:</strong> average for the most recent month</span></x-import>
               </div>
               <div style="display:flex;flex-direction:column;gap:8px;flex:1;border-radius:8px;">
+              <div style="background:#fff;border-radius:8px;padding:16px 16px 14px;display:flex;flex-direction:column;gap:4px">
+                <span style="font-size:12px;line-height:16px;font-weight:700;letter-spacing:1px;color:#5B5A61;text-transform:uppercase">{{ lexAvgLabel }}</span>
+                <span style="font-size:24px;font-weight:700;line-height:1.2;color:#1D1D1D">{{ dLexileNow }}</span>
+              </div>
               <div style="background:#fff;border-radius:8px;padding:16px 16px 14px;display:flex;flex-direction:column;gap:10px;flex:1;justify-content:flex-start">
                 <span style="font-size:12px;line-height:16px;font-weight:700;letter-spacing:1px;color:#5B5A61;text-transform:uppercase">{{ lexTrendLabel }}</span>
-                <div style="display:flex;flex-direction:column;gap:6px">
-                  <span style="font-size:12px;font-weight:700;color:#1D1D1D">Filter by grade</span>
-                  <sc-if value="{{ lexChipsScroll }}" hint-placeholder-val="{{ true }}">
-                    <div role="group" aria-label="Filter by grade" ref="{{ lexChipRowRef }}" style="display:flex;gap:6px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding:0 50%;margin:0 -16px;-webkit-mask-image:linear-gradient(90deg, transparent 0, #000 32px, #000 calc(100% - 32px), transparent 100%);mask-image:linear-gradient(90deg, transparent 0, #000 32px, #000 calc(100% - 32px), transparent 100%)">
-                      <sc-for list="{{ lexGrades }}" as="g" hint-placeholder-count="13">
-                        <button type="button" data-grade="{{ g.id }}" aria-pressed="{{ g.pressed }}" aria-label="{{ g.aria }}" onClick="{{ g.onClick }}" style="{{ g.style }}" style-hover="border-color:#333333">{{ g.id }}</button>
-                      </sc-for>
-                    </div>
-                  </sc-if>
-                  <sc-if value="{{ lexChipsWrap }}" hint-placeholder-val="{{ false }}">
-                    <div role="group" aria-label="Filter by grade" style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center">
-                      <sc-for list="{{ lexGrades }}" as="g" hint-placeholder-count="6">
-                        <button type="button" data-grade="{{ g.id }}" aria-pressed="{{ g.pressed }}" aria-label="{{ g.aria }}" onClick="{{ g.onClick }}" style="{{ g.style }}" style-hover="border-color:#333333">{{ g.id }}</button>
-                      </sc-for>
-                    </div>
-                  </sc-if>
-                </div>
-                <div style="position:relative;flex:1;min-height:96px" onMouseLeave="{{ lexLeave }}">
+                <div style="position:relative;flex:1;min-height:68px" onMouseLeave="{{ lexLeave }}">
                 <svg viewBox="0 0 300 88" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;display:block;overflow:visible" data-om-raster="true">
                   <g stroke="#EAEBEC" stroke-width="1">
                     <line x1="34" y1="8" x2="296" y2="8" vector-effect="non-scaling-stroke"></line><line x1="34" y1="44" x2="296" y2="44" vector-effect="non-scaling-stroke"></line><line x1="34" y1="80" x2="296" y2="80" vector-effect="non-scaling-stroke"></line>
@@ -510,9 +505,12 @@
                 <span style="display:flex;align-items:center;gap:8px;font-weight:700;font-size:16px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="flex-shrink:0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8"></path><path d="M8 8h6M8 12h4"></path><path d="M15 17l2.2 2.2L21 15"></path></svg>Quiz activity and results</span><x-import component-from-global-scope="NewselaAngelou.Toggletip" trigger="{{ info16 }}" trigger-theme="light" label="About Quiz activity and results" color="dark" arrow="right" width="{{ tipW }}" auto-focus="{{ false }}" hint-size="16px,16px"><span style="display:block">Quizzes students completed this period. Each quiz has 4 questions.</span><span style="display:block;margin-top:8px"><strong style="font-weight:700">Completed by:</strong> number of students who completed at least one quiz</span><span style="display:block;margin-top:8px"><strong style="font-weight:700">Result distribution:</strong> share of completed quizzes by number of questions correct, out of all completed quizzes</span></x-import>
               </div>
               <div style="display:flex;flex-direction:column;gap:8px;flex:1">
-              <div style="background:#fff;border-radius:8px;padding:14px 16px;display:flex;flex-direction:column;gap:2px">
-                <span style="font-size:24px;font-weight:700;line-height:32px;color:#1D1D1D">{{ dQuizCount }}</span>
-                <span style="font-size:14px;line-height:20px;color:#545454">{{ dQuizVolumeSub }}</span>
+              <div style="background:#fff;border-radius:8px;padding:16px 16px 14px;display:flex;flex-direction:column;gap:4px">
+                <span style="font-size:12px;line-height:16px;font-weight:700;letter-spacing:1px;color:#5B5A61;text-transform:uppercase">Quizzes completed</span>
+                <span style="display:flex;align-items:baseline;flex-wrap:wrap;column-gap:8px">
+                  <span style="font-size:24px;font-weight:700;line-height:32px;color:#1D1D1D">{{ dQuizNum }}</span>
+                  <span style="font-size:14px;line-height:20px;color:#545454">{{ dQuizBy }}</span>
+                </span>
               </div>
               <div style="background:#fff;border-radius:8px;padding:16px 16px 14px;display:flex;flex-direction:column;gap:12px;flex:1;justify-content:flex-start">
                 <span style="font-size:12px;line-height:16px;font-weight:700;letter-spacing:1px;color:#5B5A61">RESULT DISTRIBUTION</span>
@@ -1489,7 +1487,7 @@ class Component extends DCLogic {
     const list = this.VARIANTS[exp] || [];
     const variant = list.indexOf(this.state.variant) >= 0 ? this.state.variant : list[0];
     return {
-      lastUpdated: 'Updated: 11/6 1:25PM',
+      lastUpdated: 'Updated: 11/6 3:55PM',
       filterRowRef: this.filterRowRef,
       filterShadow: this.state.filterStuck ? '0 6px 6px -4px rgba(29,29,29,0.12)' : 'none',
       experience: exp, experiences: this.EXPERIENCES,
@@ -1794,17 +1792,19 @@ class Component extends DCLogic {
       { subject: 'Writing', accent: '#8B1EA4', href: 'Classroom Data v1.5.dc.html#writing' + sfx, share: 0.21, ts: 0.22, ss: 0.24, vs: 0.1, icon: 'project/assets/writing-detail.svg' },
     ];
 
-    const atOrAboveRaw = this.rate(60, S.off, 'gl', 15, 92);
+    const IG = this.insightGrade();
+    const gOff = IG.off, gs = '|g' + IG.g;
+    const atOrAboveRaw = this.rate(60, S.off + gOff, 'gl' + gs, 15, 92);
     const above = Math.round(atOrAboveRaw * 0.4), at = atOrAboveRaw - above, below = 100 - atOrAboveRaw;
     const glTotal = 100;
     const atOrAbove = atOrAboveRaw;
-    const prior = Math.max(10, atOrAbove - (3 + Math.round(this.hash(this.ctxKey() + '|d-prior') * 5)));
+    const prior = Math.max(10, atOrAbove - (3 + Math.round(this.hash(this.ctxKey() + gs + '|d-prior') * 5)));
     const up = this.rate(36, S.off * 0.5, 'up', 10, 70), down = this.rate(14, -S.off * 0.3, 'down', 3, 30), flat = 100 - up - down;
     const grTotal = 100;
-    const quiz = this.rate(72, S.off, 'quiz', 40, 95);
-    const qTrend = Math.round(this.hash(this.ctxKey() + '|d-qt') * 10 - 3);
-    const weakPct = this.rate(this.SKILL_BASE[2], S.off, 'dsk2', 5, 97);
-    const weakResp = Math.round(S.quizzes * 4 / 6);
+    const quiz = this.rate(72, S.off + gOff, 'quiz' + gs, 40, 95);
+    const qTrend = Math.round(this.hash(this.ctxKey() + gs + '|d-qt') * 10 - 3);
+    const weakPct = this.rate(this.SKILL_BASE[2], S.off + gOff, 'dsk2' + gs, 5, 97);
+    const weakResp = Math.round(S.quizzes * IG.share * 4 / 6);
 
     const bar = (items, total) => items.map(i => ({
       label: i.label, color: i.color,
@@ -1845,6 +1845,15 @@ class Component extends DCLogic {
       usageGridBtn: this.usageBtnStyle((st.usageView || 'grid') === 'grid', st.usageHover === 'grid'), usageListBtn: this.usageBtnStyle(st.usageView === 'list', st.usageHover === 'list'),
       usageGridEnter: () => this.setState({ usageHover: 'grid' }), usageListEnter: () => this.setState({ usageHover: 'list' }), usageHoverOff: () => this.setState({ usageHover: null }),
       iconSize24: 24,
+      insightGrades: IG.list.map((g, i) => {
+        const on = i === IG.idx;
+        return {
+          id: g, pressed: on ? 'true' : 'false', aria: IG.opts[i],
+          style: 'width:32px;height:32px;padding:0;box-sizing:border-box;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font:inherit;font-size:14px;line-height:16px;font-weight:700;cursor:pointer;transition:background 120ms, color 120ms, border-color 120ms;'
+            + (on ? 'background:#333333;color:#FFFFFF;border:1px solid #333333' : 'background:#FFFFFF;color:#1D1D1D;border:1px solid #77767A'),
+          onClick: () => this.setState({ lexGrade: IG.opts[i], lexHover: null }),
+        };
+      }),
       districtHeadline: atOrAbove + '% of students are reading at or above grade level, up from ' + prior + '% at the start of the term. '
         + "Author's Purpose is " + (allSchools ? "the district's" : "this school's") + " greatest instructional opportunity, with " + weakPct + '% correct across ' + weakResp.toLocaleString() + ' responses.',
       dGradeLevel: this.dsBars(bar([
@@ -1884,11 +1893,10 @@ class Component extends DCLogic {
         const N = months.length, last = Math.max(1, N - 1);
         const nTicks = Math.min(N, weekly ? 4 : N);
         tickIdx = Array.from({ length: nTicks }, (v, k) => Math.round(k * last / Math.max(1, nTicks - 1)));
-        const grades = this.lexGradeList();
-        const grade = this.lexGrade();
+        const grade = IG.g;
         const yearGain = Math.max(15, Math.round(45 + S.off * 1.5));
         const gain = Math.round(yearGain * (rangeName === 'July to date' ? 0.4 : rangeName === 'Last 90 days' ? 0.3 : 0.15));
-        const nowVal = Math.round((this.LEX_GRADE_BASE[grade] + S.off * 5 + yearGain / 2) / 10) * 10;
+        const nowVal = Math.round((IG.lexBase + S.off * 5 + yearGain / 2) / 10) * 10;
         const start = nowVal - gain;
         const vals = months.map((m, i) => {
           const n = this.hash(this.ctxKey() + '|lex|g' + grade + '|' + (i * 5 + 1));
@@ -1907,20 +1915,6 @@ class Component extends DCLogic {
         const hov = this.state.lexHover;
         const has = hov != null && pts[hov];
         return {
-          lexChipsScroll: grades.length > 6, lexChipsWrap: grades.length <= 6,
-          lexChipRowRef: this.lexChipRowRef || (this.lexChipRowRef = (el) => {
-            if (el && el !== this._lexRowEl) { this._lexRowEl = el; window.requestAnimationFrame(() => this.centerLexChip(false)); }
-            else if (!el) this._lexRowEl = null;
-          }),
-          lexGrades: grades.map((g) => {
-            const on = g === grade;
-            return {
-              id: g, pressed: on ? 'true' : 'false', aria: g === 'K' ? 'Kindergarten' : 'Grade ' + g,
-              style: 'width:32px;height:32px;padding:0;box-sizing:border-box;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font:inherit;font-size:14px;line-height:16px;font-weight:700;cursor:pointer;transition:background 120ms, color 120ms, border-color 120ms;'
-                + (on ? 'background:#333333;color:#FFFFFF;border:1px solid #333333' : 'background:#FFFFFF;color:#1D1D1D;border:1px solid #77767A'),
-              onClick: () => this.setState({ lexGrade: g, lexHover: null }, () => this.centerLexChip(true)),
-            };
-          }),
           dLexilePoints: pts.map((p, i) => ({ x: p.x, y: p.y, left: (p.x / 300 * 100).toFixed(2) + '%', top: (p.y / 88 * 100).toFixed(2) + '%', size: hov === i ? '9px' : '5px', shadow: hov === i ? '0 0 0 1.5px #FFFFFF' : 'none', title: months[i] + ': ' + vals[i] + 'L', onEnter: () => this.setState({ lexHover: i }) })),
           lexLeave: () => this.setState({ lexHover: null }),
           lexHasHover: !!has,
@@ -1955,9 +1949,9 @@ class Component extends DCLogic {
         };
       })(),
       ...(() => {
-        const quizTakers = S.quizTakers;
-        const quizzes = S.quizzes;
-        const threePlus = this.rate(58, S.off * 0.5, 'q3plus', 15, 92);
+        const quizTakers = Math.round(S.quizTakers * IG.share);
+        const quizzes = Math.round(S.quizzes * IG.share);
+        const threePlus = this.rate(58, (S.off + gOff) * 0.5, 'q3plus' + gs, 15, 92);
         const shift = Math.round((quiz - 80) / 2);
         const raw = [
           { level: '0', label: '0 correct', v: 5 - Math.round(shift / 2), fill: 'var(--ui-red-500, #DE3838)', ink: '#FFFFFF' },
@@ -1971,6 +1965,8 @@ class Component extends DCLogic {
           dQuizVolume: Math.round(quizzes * t).toLocaleString() + ' quizzes completed by ' + Math.round(quizTakers * t).toLocaleString() + ' students',
           dQuizCount: Math.round(quizzes * t).toLocaleString() + ' quizzes',
           dQuizVolumeSub: 'Completed by ' + Math.round(quizTakers * t).toLocaleString() + ' students',
+          dQuizNum: Math.round(quizzes * t).toLocaleString(),
+          dQuizBy: 'by ' + Math.round(quizTakers * t).toLocaleString() + ' students',
           dQuizThreePlus: Math.round(threePlus * t) + '% of active students completed at least three quizzes',
           dQuizDist: raw.map((s, i) => {
             const pct = Math.round((s.v / sum) * 100);
@@ -2160,7 +2156,7 @@ class Component extends DCLogic {
         };
       })(),
       dSkills: [
-        { kicker: 'STRONGEST SKILL', label: 'Main Idea and Details', value: this.rate(this.SKILL_BASE[1], S.off, 'dsk1', 5, 97) + '%', color: '#0F8670', sub: 'Consistent across all grade bands.', aria: 'Main Idea and Details: view by school', onClick: () => this.goSaTable('skills', 1) },
+        { kicker: 'STRONGEST SKILL', label: 'Main Idea and Details', value: this.rate(this.SKILL_BASE[1], S.off + gOff, 'dsk1' + gs, 5, 97) + '%', color: '#0F8670', sub: 'Consistent across all grade bands.', aria: 'Main Idea and Details: view by school', onClick: () => this.goSaTable('skills', 1) },
         { kicker: 'GREATEST NEED', label: "Author's Purpose", value: weakPct + '%', color: '#DA6D00', sub: weakResp.toLocaleString() + ' responses district-wide.', aria: "Author's Purpose: view by school", onClick: () => this.goSaTable('skills', 2) },
       ],
     };
@@ -2326,32 +2322,19 @@ class Component extends DCLogic {
     'Most active students': 'The 3 schools with the most students who used Newsela at least once this period.',
     'Content printed': 'The 3 schools where teachers printed or downloaded content the most this period. Each print of one article counts once.',
   };
-  LEX_GRADE_BASE = { K: 230, 1: 400, 2: 550, 3: 680, 4: 780, 5: 860, 6: 920, 7: 970, 8: 1010, 9: 1050, 10: 1080, 11: 1110, 12: 1130 };
-  lexGradeList() {
+  insightGrade() {
+    const LEX_BASE = { K: 230, 1: 400, 2: 550, 3: 680, 4: 780, 5: 860, 6: 920, 7: 970, 8: 1010, 9: 1050, 10: 1080, 11: 1110, 12: 1130 };
     const band = this.state.gradeBand || 'All grades';
-    return band === 'All grades' ? [].concat(this.GRADES['Elementary school (K–5)'], this.GRADES['Middle school (6–8)'], this.GRADES['High school (9–12)']) : (this.GRADES[band] || []);
-  }
-  lexGrade() { const list = this.lexGradeList(); return list.indexOf(this.state.lexGrade) >= 0 ? this.state.lexGrade : list[0]; }
-  centerLexChip(animate) {
-    const row = this._lexRowEl;
-    if (!row || typeof window === 'undefined') return;
-    const chip = row.querySelector('[data-grade="' + this.lexGrade() + '"]');
-    if (!chip) return;
-    const rr = row.getBoundingClientRect(), cr = chip.getBoundingClientRect();
-    const max = Math.max(0, row.scrollWidth - row.clientWidth);
-    const target = Math.max(0, Math.min(max, row.scrollLeft + (cr.left - rr.left) + cr.width / 2 - row.clientWidth / 2));
-    if (this._lexScrollRaf) { window.cancelAnimationFrame(this._lexScrollRaf); this._lexScrollRaf = null; }
-    if (!animate) { row.scrollLeft = target; return; }
-    const from = row.scrollLeft, dist = target - from, dur = 420;
-    const ease = (x) => x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
-    let t0 = null;
-    const step = (ts) => {
-      if (t0 == null) t0 = ts;
-      const p = Math.min(1, (ts - t0) / dur);
-      row.scrollLeft = from + dist * ease(p);
-      this._lexScrollRaf = p < 1 ? window.requestAnimationFrame(step) : null;
+    const list = band === 'All grades' ? [].concat(this.GRADES['Elementary school (K–5)'], this.GRADES['Middle school (6–8)'], this.GRADES['High school (9–12)']) : (this.GRADES[band] || []);
+    const opts = list.map(g => g === 'K' ? 'Kindergarten' : 'Grade ' + g);
+    const idx = Math.max(0, opts.indexOf(this.state.lexGrade));
+    const g = list[idx];
+    return {
+      list, opts, idx, g, label: opts[idx],
+      lexBase: LEX_BASE[g],
+      off: (this.hash('goff|' + g) - 0.5) * 14,
+      share: 1 / list.length * (0.8 + this.hash('gshare|' + g) * 0.4),
     };
-    this._lexScrollRaf = window.requestAnimationFrame(step);
   }
   GRADES = { 'Elementary school (K–5)': ['K', '1', '2', '3', '4', '5'], 'Middle school (6–8)': ['6', '7', '8'], 'High school (9–12)': ['9', '10', '11', '12'] };
   drillVals(scope) {
@@ -2555,7 +2538,6 @@ class Component extends DCLogic {
     }); this._key = this.ctxKey(); this.startTween(); }
   componentWillUnmount() {
     if (this._onStickScroll) window.removeEventListener('scroll', this._onStickScroll, true);
-    if (this._lexScrollRaf && typeof window !== 'undefined') window.cancelAnimationFrame(this._lexScrollRaf);
     if (typeof window === 'undefined') return;
     if (this._raf) window.cancelAnimationFrame(this._raf);
     if (this._settle) window.clearTimeout(this._settle);
